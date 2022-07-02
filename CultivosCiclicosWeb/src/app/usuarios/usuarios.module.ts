@@ -4,6 +4,7 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
+import { UsuariosRoutingModule } from './usuarios-routing.module.ts.module';
 
 
 
@@ -15,7 +16,8 @@ import { ListadoComponent } from './pages/listado/listado.component';
     ListadoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    UsuariosRoutingModule
   ]
 })
 export class UsuariosModule { }
