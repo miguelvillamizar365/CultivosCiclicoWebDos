@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "CultivosCiclicosWeb"
+  "defaultProject": "CultivosCiclicosWeb",
+  "cli": {
+    "analytics": false
+  }
 }
