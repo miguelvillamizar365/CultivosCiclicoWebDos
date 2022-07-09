@@ -10,27 +10,6 @@ fxLayoutGap="20px">
     fxFlex.lg="18"
     fxFlex.sm="30"
     *ngFor="let usu of listaUsuario">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title> {{usu.nombreCompleto}} </mat-card-title>
-                <mat-card-subtitle> {{usu.rol}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <h3>{{usu.correo}}</h3>
-                <p>
-                    <strong>Tipo Documento</strong> {{ usu.tipoDocumento }}
-                    <br/>
-                    <strong>Número de Documento </strong> {{ usu.numeroIdentificacion }}1
-                </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-stroked-button color="warn">
-                    Eliminar
-                </button>
-                <button mat-raised-button color="primary">
-                    Editar
-                </button>
-            </mat-card-actions>
-        </mat-card>
+        <app-usuario-tarjeta [usuario]="usu"></app-usuario-tarjeta>
     </div>
 </div>

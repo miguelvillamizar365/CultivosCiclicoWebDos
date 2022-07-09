@@ -8,8 +8,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
-
-
+import { UsuarioTarjetaComponent } from './components/usuario-tarjeta/usuario-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
     BuscarComponent,
     HomeComponent,
     ListadoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    UsuarioTarjetaComponent
   ],
   imports: [
     CommonModule,

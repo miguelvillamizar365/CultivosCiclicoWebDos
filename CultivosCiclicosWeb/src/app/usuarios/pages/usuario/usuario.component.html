@@ -1,1 +1,30 @@
-<p>usuario works!</p>
+<mat-grid-list cols="1" *ngIf="!usuario; else divUsuario">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divUsuario>
+    <div fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutGap="30px">
+        <!-- {{ usuario | json }} -->
+        <div fxFlex="50">
+            <h1>{{ usuario.nombreCompleto }} <small>- {{ usuario.correo }} </small> </h1>
+            <mat-divider></mat-divider>
+            <br>
+        </div>
+        <div fxFlex="50">
+            <h1>{{ usuario.rol }}</h1>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <mat-list-item> {{ usuario.tipoDocumento }} </mat-list-item>
+                <mat-list-item> {{ usuario.numeroIdentificacion }} </mat-list-item>
+            </mat-list>
+            <br> 
+            <button mat-stroked-button 
+            color="warn"
+            (click)="regresar()">Regresar</button>
+        </div>
+    </div>    
+</ng-template>

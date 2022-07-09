@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> {{usuario.nombreCompleto}} </mat-card-title>
+        <mat-card-subtitle> {{usuario.rol}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <h3>{{usuario.correo}}</h3>
+        <p>
+            <strong>Tipo de Documento</strong> <br/>{{ usuario.tipoDocumento }}
+            <br/>
+            <strong>Número de Documento </strong> <br/> {{ usuario.numeroIdentificacion }}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-stroked-button 
+        color="warn"
+        [routerLink]="['/usuarios', usuario.id]">
+            Eliminar
+        </button>
+        <button mat-raised-button 
+        color="primary"
+        [routerLink]="['/usuarios/editar', usuario.id]">
+            Editar
+        </button>
+    </mat-card-actions>
+</mat-card>
