@@ -18,7 +18,11 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(`${this.baseUrl}api/Usuarios`);
   }
 
-  getUsuarioPorId(id: string):Observable<Usuario> {
+  getUsuarioPorId(id: number):Observable<Usuario> {
     return this.http.get<Usuario>(`${this.baseUrl}api/Usuarios/${0}` + id);
+  }
+
+  getSugerencias(termino: string): Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(`${this.baseUrl}api/Usuarios/GetByName?userName=${termino}`);
   }
 }
