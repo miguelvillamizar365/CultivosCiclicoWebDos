@@ -25,4 +25,8 @@ export class UsuariosService {
   getSugerencias(termino: string): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(`${this.baseUrl}api/Usuarios/GetByName?userName=${termino}`);
   }
+
+  agregarUsuario(Usuario: Usuario): Observable<Usuario>{
+    return this.http.post<Usuario>(`${this.baseUrl}api/Usuarios`, Usuario);
+  }
 }

@@ -3,11 +3,16 @@
 export interface Usuario {
     id?:                    number;
     nombreCompleto:         string;
+    nombre:                 string;
+    apellido:               string;
     correo:                 string;
-    rol:                    number;
-    tipoDocumento:          number;
+    rol:                    Roles;
+    rol_Id:                 number;
+    tipoDocumento:          TipoDocumentos;
+    tipDoc_Id:              number;
     estado:                 number;
     numeroIdentificacion:   string; 
+    contrasenia:            string;
 }
 
 export enum Roles{
