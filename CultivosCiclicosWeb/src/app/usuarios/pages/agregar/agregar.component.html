@@ -35,7 +35,7 @@
         
         <mat-form-field fxFlex="100">
             <mat-label>Rol</mat-label>
-            <mat-select [(ngModel)]="usuario.rol"
+            <mat-select [(ngModel)]="usuario.rol_Id"
                         required>
                 <mat-option *ngFor="let rol of roles"
                             [value]="rol.id">
@@ -46,7 +46,7 @@
         
         <mat-form-field fxFlex="100">
             <mat-label>Tipo Documento</mat-label>
-            <mat-select [(ngModel)]="usuario.tipoDocumento"
+            <mat-select [(ngModel)]="usuario.tipDoc_Id"
                         required>
                 <mat-option *ngFor="let tipo of tipodocumentos"
                             [value]="tipo.id">
@@ -75,5 +75,4 @@
             Guardar
         </button>
     </div>
-    
 </div>

@@ -29,4 +29,9 @@ export class UsuariosService {
   agregarUsuario(Usuario: Usuario): Observable<Usuario>{
     return this.http.post<Usuario>(`${this.baseUrl}api/Usuarios`, Usuario);
   }
+  
+  actualizarUsuario(Usuario: Usuario): Observable<Usuario>{
+    return this.http.post<Usuario>(`${this.baseUrl}api/Usuarios/Actualizar?id=${Usuario.id}`, Usuario);
+  }
+
 }

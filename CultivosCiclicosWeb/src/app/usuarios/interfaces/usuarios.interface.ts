@@ -7,9 +7,9 @@ export interface Usuario {
     apellido:               string;
     correo:                 string;
     rol:                    Roles;
-    rol_Id:                 number;
+    rol_Id:                 Roles;
     tipoDocumento:          TipoDocumentos;
-    tipDoc_Id:              number;
+    tipDoc_Id:              TipoDocumentos;
     estado:                 number;
     numeroIdentificacion:   string; 
     contrasenia:            string;
