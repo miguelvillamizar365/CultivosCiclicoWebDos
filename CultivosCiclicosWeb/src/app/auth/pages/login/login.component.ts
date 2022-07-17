@@ -17,7 +17,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-  //  ir al back end
+    // ir al back end
+    this.authService.login().subscribe(resp => {
+      this.router.navigate(['./usuarios']);
+    });    
+  }
+  IngresarSinLogin(){
     this.router.navigate(['./usuarios']);
   }
 }

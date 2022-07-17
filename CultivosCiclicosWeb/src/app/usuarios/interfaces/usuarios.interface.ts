@@ -33,3 +33,8 @@ NumeroIdentificaciónPersonal = "2",
 NumeroIdentificaciónTributaria = "3",
 TarjetaIdentidad = "4"
 }
+
+export interface UsuarioAuth{
+    correo: string,
+    Contrasenia: string   
+}
