@@ -1,4 +1,10 @@
-<h1>Nuevo Usuario</h1>
+<h1>
+    {{
+        (usuario.id) ? 'Editar': 'Nuevo'
+    }}
+    Usuario
+    <small>{{ usuario.nombre }}</small>
+</h1>
 
 <div fxLayout="row" 
      fxLayoutGap="40px">
@@ -68,11 +74,22 @@
                     required=""
                     [(ngModel)]="usuario.contrasenia">
         </mat-form-field>
-        <button mat-raised-button 
-                color="primary"
-                (click)="guardar()">
-            <mat-icon>edit</mat-icon>
-            Guardar
-        </button>
+        <div fxLayout>
+            <button mat-raised-button 
+                    color="primary"
+                    (click)="guardar()">
+                <mat-icon>edit</mat-icon>
+                {{ (usuario.id) ? 'Actualizar': 'Crear' }}
+            </button>
+            
+            <span class="spacer"></span>
+            <button *ngIf="usuario.id"
+                mat-stroked-button 
+                color="warn"
+                (click)="borrarUsuario()">
+                <mat-icon>remove</mat-icon>
+                Borrar
+            </button>
+        </div>
     </div>
 </div>

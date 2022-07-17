@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Estados, Usuario, Roles, TipoDocumentos } from '../../interfaces/usuarios.interface';
 import { UsuariosService } from '../../services/usuarios.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -58,7 +61,9 @@ export class AgregarComponent implements OnInit {
 
   constructor(private usuarioServicio: UsuariosService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { 
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private dialog: MatDialog) { 
 
               }
 
@@ -85,7 +90,8 @@ export class AgregarComponent implements OnInit {
       //Actualizar
       this.usuarioServicio.actualizarUsuario(this.usuario)
       .subscribe(usuario => {
-          console.log('Actualizando', usuario);
+        this.router.navigate(['/usuarios/listado']);
+        this.mostrarSnackBar('Usuario Actualizado');    
       });
     }
     else
@@ -94,7 +100,33 @@ export class AgregarComponent implements OnInit {
       this.usuarioServicio.agregarUsuario(this.usuario)
       .subscribe(resp => {
         this.router.navigate(['/usuarios/listado']);
+        this.mostrarSnackBar('Usuario Creado');
       });
     }
+  }
+  
+  borrarUsuario(){
+      const dialog = this.dialog.open(ConfirmarComponent,{
+        width: '250px',
+        data: this.usuario
+      });
+
+      dialog.afterClosed().subscribe(
+        (result) => {
+          if(result){
+            this.usuarioServicio.borrarUsuario(this.usuario.id!)
+            .subscribe(resp => {
+              this.router.navigate(['/usuarios/listado']);
+            });
+          }
+        }
+      );
+
+  }
+
+  mostrarSnackBar(mensaje:string){
+    this.snackBar.open(mensaje, 'Ok!', {
+      duration: 2500
+    });
   }
 }

@@ -9,22 +9,26 @@
         fxLayout.xs="column"
         fxLayoutGap="30px">
         <!-- {{ usuario | json }} -->
-        <div fxFlex="50">
-            <h1>{{ usuario.nombreCompleto }} <small>- {{ usuario.correo }} </small> </h1>
-            <mat-divider></mat-divider>
+        <div fxFlex="100" 
+        fxLayout.xs="column">
+            <h1>{{ usuario.nombreCompleto }} </h1>
+            <h2> Correo Electrónico </h2>
+            <small> {{ usuario.correo }} </small>
+            
             <br>
-        </div>
-        <div fxFlex="50">
-            <h1>{{ usuario.rol }}</h1>
-            <mat-divider></mat-divider>
-            <mat-list>
-                <mat-list-item> {{ usuario.tipoDocumento }} </mat-list-item>
-                <mat-list-item> {{ usuario.numeroIdentificacion }} </mat-list-item>
-            </mat-list>
-            <br> 
+            
+            <h1>Rol</h1>
+            <small>{{ usuario.rol }}</small>
+            <h1>Tipo Documento</h1>
+            <small>{{ usuario.tipoDocumento }}</small>
+                        
+            <h1>Número de Documento</h1>
+            <small>{{ usuario.numeroIdentificacion }}</small>
+            <br>            
             <button mat-stroked-button 
-            color="warn"
-            (click)="regresar()">Regresar</button>
+                color="primary"
+                (click)="regresar()">Regresar
+            </button>
         </div>
     </div>    
 </ng-template>

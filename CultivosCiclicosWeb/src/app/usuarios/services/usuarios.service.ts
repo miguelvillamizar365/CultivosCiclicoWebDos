@@ -34,4 +34,8 @@ export class UsuariosService {
     return this.http.post<Usuario>(`${this.baseUrl}api/Usuarios/Actualizar?id=${Usuario.id}`, Usuario);
   }
 
+  borrarUsuario(id: number): Observable<any>{
+    return this.http.post<Usuario>(`${this.baseUrl}api/Usuarios/Eliminar?id=${id}`, id);
+  }
+
 }
