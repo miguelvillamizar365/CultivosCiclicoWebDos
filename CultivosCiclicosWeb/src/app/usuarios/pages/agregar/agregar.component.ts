@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar',
@@ -63,7 +64,8 @@ export class AgregarComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router,
               private snackBar: MatSnackBar,
-              private dialog: MatDialog) { 
+              private dialog: MatDialog,
+              private fb: FormBuilder) { 
 
               }
 
@@ -121,7 +123,6 @@ export class AgregarComponent implements OnInit {
           }
         }
       );
-
   }
 
   mostrarSnackBar(mensaje:string){
@@ -129,4 +130,6 @@ export class AgregarComponent implements OnInit {
       duration: 2500
     });
   }
+
+  
 }

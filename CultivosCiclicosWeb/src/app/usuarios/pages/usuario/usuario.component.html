@@ -11,19 +11,19 @@
         <!-- {{ usuario | json }} -->
         <div fxFlex="100" 
         fxLayout.xs="column">
-            <h1>{{ usuario.nombreCompleto }} </h1>
-            <h2> Correo Electrónico </h2>
-            <small> {{ usuario.correo }} </small>
-            
+            <h1>{{ usuario.nombreCompleto }} </h1>            
+            <mat-label>Correo Electrónico</mat-label>
+            <h2> {{ usuario.correo }} </h2>
             <br>
+                                
+            <mat-label>Rol</mat-label>
+            <h2>{{ usuario.rol }}</h2>
             
-            <h1>Rol</h1>
-            <small>{{ usuario.rol }}</small>
-            <h1>Tipo Documento</h1>
-            <small>{{ usuario.tipoDocumento }}</small>
-                        
-            <h1>Número de Documento</h1>
-            <small>{{ usuario.numeroIdentificacion }}</small>
+            <mat-label>Tipo Documento</mat-label>
+            <h2>{{ usuario.tipoDocumento }}</h2>
+                     
+            <mat-label>Número de Documento</mat-label>
+            <h1>{{ usuario.numeroIdentificacion }}</h1>
             <br>            
             <button mat-stroked-button 
                 color="primary"

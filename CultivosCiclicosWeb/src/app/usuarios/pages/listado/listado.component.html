@@ -1,15 +1,52 @@
-<h1>listado de Usuarios</h1>
+<h1>Listado de Usuarios</h1>
 <mat-divider></mat-divider>
 <br/>
 
-<div fxLayout="row wrap" 
-fxLayout.xs="column"
-fxLayoutAlign="center"
-fxLayoutGap="20px">
-    <div fxFlex="20"
-    fxFlex.lg="18"
-    fxFlex.sm="30"
-    *ngFor="let usu of listaUsuario">
-        <app-usuario-tarjeta [usuario]="usu"></app-usuario-tarjeta>
+<div fxLayout="column">
+    <div fxLayout="column">
+        <h3>Buscador</h3>
+        <mat-form-field class="example-full-width">
+            <div    fxLayout="row" 
+            fxLayout.xs="column"
+            fxLayoutGap="20px">
+                <input type="text"
+                    placeholder="Pick one"
+                    aria-label="Number"
+                    matInput
+                    [(ngModel)]="termino"
+                    [matAutocomplete]="auto"
+                    (input)="buscarUsuario()">
+                <button (click)="refrescar()">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </div>
+            <mat-autocomplete autoActiveFirstOption 
+            #auto="matAutocomplete"
+            (optionSelected)="opcionSeleccionada($event)">
+                <mat-option *ngFor="let usuario of usuarios" [value]="usuario">
+                    {{usuario.nombreCompleto}}
+                </mat-option>
+                <mat-option *ngIf="this.usuarios.length === 0 && termino.trim().length > 0" value="">
+                    No se encontró nada con el termino {{ termino }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+</div>
+<div *ngIf="usuarioSeleccionado">
+    <app-usuario-tarjeta [usuario]="usuarioSeleccionado"></app-usuario-tarjeta>
+</div>
+
+<div *ngIf="usuarioSeleccionado == undefined">
+    <div fxLayout="row wrap" 
+    fxLayout.xs="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px">
+        <div fxFlex="20"
+        fxFlex.lg="18"
+        fxFlex.sm="30"
+        *ngFor="let usu of listaUsuario">
+            <app-usuario-tarjeta [usuario]="usu"></app-usuario-tarjeta>
+        </div>
     </div>
 </div>
