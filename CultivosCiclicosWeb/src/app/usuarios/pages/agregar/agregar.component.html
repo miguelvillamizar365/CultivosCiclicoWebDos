@@ -6,6 +6,8 @@
     <small>{{ usuario.nombre }}</small>
 </h1>
 
+<form autocomplete="off" 
+[formGroup]="miFormulario">
 <div fxLayout="row" 
      fxLayoutGap="40px">
     <div fxFlex="100" 
@@ -19,7 +21,12 @@
                 <input  matInput 
                         type="text" 
                         required=""
-                        [(ngModel)]="usuario.nombre">
+                        formControlName="nombre"
+                        placeholder="Nombre del usuario">
+
+                <mat-error *ngIf="campoNoEsValido('nombre')">
+                Debe ser de 3 letras
+                </mat-error>
             </mat-form-field>
         
             <mat-form-field fxFlex="100">
@@ -27,7 +34,11 @@
                 <input  matInput 
                         type="text" 
                         required=""
-                        [(ngModel)]="usuario.apellido">
+                        formControlName="apellido">
+                        
+                <mat-error *ngIf="campoNoEsValido('apellido')">
+                Debe ser de 3 letras
+                </mat-error>
             </mat-form-field>
         </div>
     
@@ -36,12 +47,16 @@
             <input  matInput 
                     type="text" 
                     required=""            
-                    [(ngModel)]="usuario.correo">
+                    formControlName="correo">
+            
+            <mat-error *ngIf="campoNoEsValido('correo')">
+                Debe ser de 3 letras
+            </mat-error>
         </mat-form-field>
         
         <mat-form-field fxFlex="100">
             <mat-label>Rol</mat-label>
-            <mat-select [(ngModel)]="usuario.rol_Id"
+            <mat-select formControlName="rol_Id"
                         required>
                 <mat-option *ngFor="let rol of roles"
                             [value]="rol.id">
@@ -52,7 +67,7 @@
         
         <mat-form-field fxFlex="100">
             <mat-label>Tipo Documento</mat-label>
-            <mat-select [(ngModel)]="usuario.tipDoc_Id"
+            <mat-select formControlName="tipDoc_Id"
                         required>
                 <mat-option *ngFor="let tipo of tipodocumentos"
                             [value]="tipo.id">
@@ -65,14 +80,22 @@
             <input  matInput 
                     type="text" 
                     required=""
-                    [(ngModel)]="usuario.numeroIdentificacion">
+                    formControlName="numeroIdentificacion">
+            
+            <mat-error *ngIf="campoNoEsValido('numeroIdentificacion')">
+                Debe ser de 3 letras
+            </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex="100">
             <mat-label>Contraseña</mat-label>
             <input  matInput 
                     type="password" 
                     required=""
-                    [(ngModel)]="usuario.contrasenia">
+                    formControlName="contrasenia">
+                    
+            <mat-error *ngIf="campoNoEsValido('contrasenia')">
+                    Debe ser de 3 letras
+            </mat-error>
         </mat-form-field>
         <div fxLayout>
             <button mat-raised-button 
@@ -93,3 +116,4 @@
         </div>
     </div>
 </div>
+</form>

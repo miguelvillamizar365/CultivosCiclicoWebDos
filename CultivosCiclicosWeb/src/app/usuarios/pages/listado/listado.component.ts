@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Usuario } from '../../interfaces/usuarios.interface';
 import { UsuariosService } from '../../services/usuarios.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-listado',
@@ -11,13 +12,17 @@ import { UsuariosService } from '../../services/usuarios.service';
 
 export class ListadoComponent implements OnInit {
   
-  public termino :             string ="";
   public usuarios:             Usuario[] =[];
   public usuarioSeleccionado!: Usuario | undefined;
   public listaUsuario:         Usuario[]=[];
+ 
+  public miFormulario: FormGroup = this.fb.group({
+    termino: ['']
+  });
 
   constructor(private usuarioService: UsuariosService,
-              private usuarioServicio: UsuariosService) { }
+              private usuarioServicio: UsuariosService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.usuarioService.getUsuarios()
@@ -27,7 +32,7 @@ export class ListadoComponent implements OnInit {
   }
   
   buscarUsuario(){
-    this.usuarioServicio.getSugerencias(this.termino.trim())
+    this.usuarioServicio.getSugerencias(this.miFormulario.value.termino.trim())
     .subscribe( usuarios => this.usuarios = usuarios);
   }
 
@@ -45,5 +50,11 @@ export class ListadoComponent implements OnInit {
 
   refrescar(){    
     this.usuarioSeleccionado = undefined;
+  }
+
+  
+  campoNoEsValido(campo: string ){
+    return this.miFormulario.controls[campo].errors
+      && this.miFormulario.controls[campo].touched;
   }
 }

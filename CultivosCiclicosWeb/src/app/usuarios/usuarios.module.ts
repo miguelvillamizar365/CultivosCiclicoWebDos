@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UsuariosRoutingModule } from './usuarios-routing.module.ts.module';
 import { MaterialModule } from '../material/material.module';
 import { AgregarComponent } from './pages/agregar/agregar.component';
@@ -24,7 +24,7 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     UsuariosRoutingModule
   ]
