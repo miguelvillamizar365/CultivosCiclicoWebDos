@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 
 @Component({
   selector: 'app-agregar',
@@ -64,11 +65,14 @@ export class AgregarComponent implements OnInit {
   public miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3) ]],
     apellido: ['', [Validators.required, Validators.minLength(3) ]],
-    correo: ['', [Validators.required, Validators.minLength(3) ]],
+    correo: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)]],
     rol_Id: ['', [Validators.required ]],
     tipDoc_Id: ['', [Validators.required ]],
     numeroIdentificacion: ['', [Validators.required, Validators.minLength(3) ]],
-    contrasenia: ['', [Validators.required, Validators.minLength(3) ]],
+    contrasenia: ['', [Validators.required, Validators.minLength(8) ]],
+    contrasenia2: ['', [Validators.required, Validators.minLength(8) ]],
+  },{
+    validators:[ this.vs.camposIguales('contrasenia', 'contrasenia2')]
   });
 
   constructor(private usuarioServicio: UsuariosService,
@@ -76,13 +80,32 @@ export class AgregarComponent implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
-              private fb: FormBuilder) { 
+              private fb: FormBuilder,
+              private vs: ValidatorService) { 
 
               }
               
   campoNoEsValido(campo: string ){
     return this.miFormulario.controls[campo].errors
       && this.miFormulario.controls[campo].touched;
+  }
+
+  campoNoValido(campo: string){
+    return this.miFormulario.get(campo)?.invalid
+           && this.miFormulario.get(campo)?.touched;
+  }
+  
+  get emailErrorMsg(): string{
+    const errors = this.miFormulario.get('correo')?.errors;
+    if(errors?.['required']){
+      return 'Email es obligatorio';
+    }
+    else if(errors?.['pattern'])
+    {
+      return 'El valor ingresado no tiene formato de correo electrónico';
+    }
+
+    return '';
   }
 
   ngOnInit(): void {

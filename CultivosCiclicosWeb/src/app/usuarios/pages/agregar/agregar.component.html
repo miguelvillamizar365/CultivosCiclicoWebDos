@@ -7,7 +7,8 @@
 </h1>
 
 <form autocomplete="off" 
-[formGroup]="miFormulario">
+[formGroup]="miFormulario"
+(ngSubmit)="guardar()">
 <div fxLayout="row" 
      fxLayoutGap="40px">
     <div fxFlex="100" 
@@ -49,9 +50,9 @@
                     required=""            
                     formControlName="correo">
             
-            <mat-error *ngIf="campoNoEsValido('correo')">
-                Debe ser de 3 letras
-            </mat-error>
+                    <mat-error *ngIf="campoNoEsValido('correo')">
+                        {{ emailErrorMsg }}
+                    </mat-error>
         </mat-form-field>
         
         <mat-form-field fxFlex="100">
@@ -91,10 +92,23 @@
             <input  matInput 
                     type="password" 
                     required=""
+                    placeholder="Password de la cuenta"
                     formControlName="contrasenia">
                     
             <mat-error *ngIf="campoNoEsValido('contrasenia')">
-                    Debe ser de 3 letras
+                    La contraseña debe de ser mayor de 6 caracteres.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="100">
+            <mat-label>Confirmar</mat-label>
+            <input  matInput 
+                    type="password" 
+                    required=""
+                    placeholder="Confirmar la contraseña"
+                    formControlName="contrasenia2">
+                    
+            <mat-error *ngIf="campoNoEsValido('contrasenia2')">
+                    Las contraseñas deben de ser iguales
             </mat-error>
         </mat-form-field>
         <div fxLayout>
@@ -109,7 +123,7 @@
             <button *ngIf="usuario.id"
                 mat-stroked-button 
                 color="warn"
-                (click)="borrarUsuario()">
+                type="submit">
                 <mat-icon>remove</mat-icon>
                 Borrar
             </button>
