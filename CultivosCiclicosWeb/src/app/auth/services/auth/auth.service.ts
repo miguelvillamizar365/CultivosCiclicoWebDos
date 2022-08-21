@@ -40,8 +40,10 @@ export class AuthService {
       );
     }
 
-    login()
+    login(correo: string, Contrasenia: string)
     {
+      this.usuario.correo = correo;
+      this.usuario.Contrasenia = Contrasenia;
         return this.http.post<Auth>(`${ this.baseUrl }api/login/authenticate`, this.usuario)
         .pipe(
           tap( auth => this._auth = auth),
