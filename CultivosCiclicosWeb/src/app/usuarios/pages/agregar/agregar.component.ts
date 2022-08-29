@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
+import { Rol } from '../../interfaces/rol.interface';
+import { TipoDocumento } from '../../interfaces/tipodocumento.interface';
 
 @Component({
   selector: 'app-agregar',
@@ -18,35 +20,8 @@ import { ValidatorService } from '../../../shared/validator/validator.service';
 
 export class AgregarComponent implements OnInit {
 
-  roles =[
-    {
-      id:'1',
-      desc:'Administrador'
-    },
-    {
-      id:'2',
-      desc:'Asesor de cultivo'
-    }
-  ];
-  
-  tipodocumentos =[
-    {
-      id:'1',
-      desc:'Cédula extranjeria'
-    },
-    {
-      id:'2',
-      desc:'Numero de identificación personal'
-    },
-    {
-      id:'3',
-      desc:'Número de identificación tributaria'
-    },
-    {
-      id:'4',
-      desc:'Tarjeta de identidad'
-    }
-  ];
+  public roles : Rol[] =[];
+  public tipodocumentos: TipoDocumento[] =[];
 
   usuario: Usuario = {
     nombreCompleto: '',
@@ -110,9 +85,19 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.usuarioServicio.getRoles()
+    .subscribe(roles => {
+      this.roles = roles;
+    });
+    
+    this.usuarioServicio.getTiposDocumentos()
+    .subscribe(tipos => {
+      this.tipodocumentos = tipos;
+    });
+
     if(!this.router.url.includes('editar')){
       return;
-    }
+    } 
     
     this.activatedRoute.params.pipe(
       switchMap( ({id}) => this.usuarioServicio.getUsuarioPorId(id))
@@ -141,6 +126,8 @@ export class AgregarComponent implements OnInit {
 
   guardar(){
 
+    console.log(this.miFormulario);
+
     if(this.miFormulario.invalid){
       this.miFormulario.markAllAsTouched();
       return;
@@ -151,8 +138,8 @@ export class AgregarComponent implements OnInit {
     this.usuario.correo = this.miFormulario.value.correo;
     this.usuario.numeroIdentificacion = this.miFormulario.value.numeroIdentificacion;
     this.usuario.contrasenia = this.miFormulario.value.contrasenia;
-    this.usuario.tipDoc_Id = this.miFormulario.value.tipDoc_Id;
-    this.usuario.rol_Id = this.miFormulario.value.rol_Id;
+    this.usuario.tipDoc_Id = this.miFormulario.value.tipDoc_Id.toString();
+    this.usuario.rol_Id = this.miFormulario.value.rol_Id.toString();
     if(this.usuario.id){
       //Actualizar
       this.usuarioServicio.actualizarUsuario(this.usuario)
@@ -166,6 +153,7 @@ export class AgregarComponent implements OnInit {
       //Crear
       this.usuarioServicio.agregarUsuario(this.usuario)
       .subscribe(resp => {
+        console.log(resp);
         this.router.navigate(['/usuarios/listado']);
         this.mostrarSnackBar('Usuario Creado');
       });

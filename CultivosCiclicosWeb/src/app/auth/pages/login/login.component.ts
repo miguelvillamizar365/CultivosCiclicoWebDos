@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, 
               private authService: AuthService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +28,21 @@ export class LoginComponent implements OnInit {
     // ir al back end
     this.authService.login(this.miFormularioLogin.value.correo,
       this.miFormularioLogin.value.Contrasenia).subscribe(resp => {
-      this.router.navigate(['./usuarios']);
+
+        if(resp.ok){
+          this.router.navigate(['./usuarios']);
+        }
+        else{
+          this.mostrarSnackBar(resp.error);
+        }
     });    
   }
-  IngresarSinLogin(){
-    this.router.navigate(['./usuarios']);
+
+  
+  mostrarSnackBar(mensaje:string){
+    this.snackBar.open(mensaje, 'Ok!', {
+      duration: 2500
+    });
   }
+
 }

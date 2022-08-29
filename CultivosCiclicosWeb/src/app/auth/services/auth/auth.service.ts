@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { UsuarioAuth } from '../../../usuarios/interfaces/usuarios.interface';
 import { Auth } from "../../interfaces/auth.interface";
-import { tap, Observable, map, of} from 'rxjs';
+import { tap, Observable, map, of, catchError} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -15,8 +15,8 @@ export class AuthService {
     private baseUrl: string = environment.baseUrl;
     
     private usuario : UsuarioAuth ={
-      correo: "miguelvillamizar365@gmail.com",
-      Contrasenia: "PruebA02*"
+      correo: "",
+      Contrasenia: ""
     };
     private _auth: Auth | undefined;
 
@@ -30,14 +30,24 @@ export class AuthService {
       if( !localStorage.getItem('token') ){
         return of(false);
       }
-
-      return this.http.post<Auth>(`${ this.baseUrl }api/login/authenticate`, this.usuario)
+      const url = `${ this.baseUrl }api/login/ValidarToken`;
+      const headers = new HttpHeaders()
+      .set('Authorization', localStorage.getItem('token') || '');
+      
+      return this.http.get<Auth>(url, {headers})
       .pipe(
         map( auth => {          
-          this._auth = auth;
+          this._auth = {
+            id: auth.id,
+            correo: auth.correo,
+            token: auth.token,
+            usuarioCompleto: auth.usuarioCompleto,
+            ok: true
+          }
           return true;
-        })
-      );
+        }),
+        catchError( error => of(false))
+        );
     }
 
     login(correo: string, Contrasenia: string)
@@ -45,13 +55,23 @@ export class AuthService {
       this.usuario.correo = correo;
       this.usuario.Contrasenia = Contrasenia;
         return this.http.post<Auth>(`${ this.baseUrl }api/login/authenticate`, this.usuario)
-        .pipe(
-          tap( auth => this._auth = auth),
-          tap( auth => localStorage.setItem('token', auth.token)),
+        .pipe(          
+          tap(auth => {
+            if(auth.id){
+              
+              this._auth = auth;
+              this._auth.ok = true;
+              localStorage.setItem('token', auth.token);
+            }
+          }),
+          map( resp => resp),
+          catchError( error => of(error))
         ); 
     }
 
     logout(){
       this._auth = undefined;
+      localStorage.clear();
     }
+
 }

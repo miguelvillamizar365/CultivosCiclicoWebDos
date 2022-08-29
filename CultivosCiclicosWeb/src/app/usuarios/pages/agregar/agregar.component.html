@@ -61,7 +61,7 @@
                         required>
                 <mat-option *ngFor="let rol of roles"
                             [value]="rol.id">
-                            {{ rol.desc }}
+                            {{ rol.nombre }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -72,7 +72,7 @@
                         required>
                 <mat-option *ngFor="let tipo of tipodocumentos"
                             [value]="tipo.id">
-                            {{ tipo.desc }}
+                            {{ tipo.nombre }}
                 </mat-option>
             </mat-select>
         </mat-form-field> 

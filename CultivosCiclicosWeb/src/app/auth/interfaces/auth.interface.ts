@@ -3,4 +3,5 @@ export interface Auth{
     correo:             string;
     usuarioCompleto:    string;
     token:              string;
+    ok:                 boolean;
 }
