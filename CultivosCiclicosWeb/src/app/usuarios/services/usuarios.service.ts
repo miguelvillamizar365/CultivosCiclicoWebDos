@@ -18,7 +18,7 @@ export class UsuariosService {
   private urlGetTiposDocumentos : string = `${this.baseUrl}api/ListasGenericas/ObtenerTodosTiposDocumentos`;
   private urlGetUsuarios : string = `${this.baseUrl}api/Usuarios`;
   private urlGetUsuarioPorId : string = `${this.baseUrl}api/Usuarios/${0}`;
-  private urlGetSugerencias : string = `${this.baseUrl}api/Usuarios/GetByName?userName=${0}`;
+  private urlGetSugerencias : string = this.baseUrl + "api/Usuarios/GetByName?userName=";
   private urlAgregarUsuario : string = `${this.baseUrl}api/Usuarios`;
   private urlActualizarUsuario : string = `${this.baseUrl}api/Usuarios/Actualizar?id=${0}`;
   private urlBorrarUsuario: string = `${this.baseUrl}api/Usuarios/Eliminar?id=${0}`;

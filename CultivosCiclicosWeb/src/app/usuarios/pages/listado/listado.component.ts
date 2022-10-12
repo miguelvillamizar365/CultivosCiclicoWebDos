@@ -31,7 +31,9 @@ export class ListadoComponent implements OnInit {
     });
   }
   
-  buscarUsuario(){
+  buscarUsuario()
+  {
+    
     this.usuarioServicio.getSugerencias(this.miFormulario.value.termino.trim())
     .subscribe( usuarios => this.usuarios = usuarios);
   }
@@ -45,7 +47,14 @@ export class ListadoComponent implements OnInit {
     const usuario: Usuario = event.option.value;
     
     this.usuarioServicio.getUsuarioPorId( usuario.id!)
-    .subscribe( usuario => this.usuarioSeleccionado = usuario);
+    .subscribe( usuario => 
+      {
+        this.usuarioSeleccionado = usuario;
+        
+        this.miFormulario.reset({
+          termino: this.usuarioSeleccionado.nombreCompleto
+        });            
+      });
   }
 
   refrescar(){    
