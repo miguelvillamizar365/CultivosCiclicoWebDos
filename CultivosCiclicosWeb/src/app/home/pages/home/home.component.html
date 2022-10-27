@@ -22,23 +22,19 @@
                 <span>Añadir Usuario</span>
             </a>
         </mat-nav-list>
-    </mat-sidenav>
+    </mat-sidenav>    
     <mat-toolbar>
         <button mat-icon-button
                 (click)="sidenav.toggle()">
             <mat-icon>reorder</mat-icon>      
-        </button>
-        
+        </button>        
         <span class="spacer"></span>
-
         <span> {{ auth.usuarioCompleto }} </span>
-
         <button mat-button 
                 (click)="logout()">
              logout  
         </button>
     </mat-toolbar>
-
     <div class="container">
         <router-outlet></router-outlet>
     </div>    

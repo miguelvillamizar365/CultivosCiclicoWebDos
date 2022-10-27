@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth/auth.service';
-import { Auth } from '../../../auth/interfaces/auth.interface';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +22,8 @@ export class HomeComponent implements OnInit {
   logout(){
     this.authService.logout();
     this.router.navigate(['./auth']);
+
+    
   }
 
 }

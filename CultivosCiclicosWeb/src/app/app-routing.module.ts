@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
-import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/guards/auth.guard';
 
-const routes :Routes =[
+const routes :Routes = [
   {
     path:'auth',
     loadChildren: () => import('./auth/auth.module').then(m=> m.AuthModule)
@@ -12,6 +11,12 @@ const routes :Routes =[
   {
     path:'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then(m=> m.UsuariosModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  }, 
+  {
+    path:'home',
+    loadChildren: () => import('./home/home.module').then(m=> m.HomeModule),
     canLoad: [ AuthGuard ],
     canActivate: [ AuthGuard ]
   },

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl:"https://localhost:44366/"
+  baseUrl:"https://cultivosciclicos2022.somee.com/"
 };
 
 /*
