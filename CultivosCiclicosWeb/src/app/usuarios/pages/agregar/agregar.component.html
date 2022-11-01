@@ -6,127 +6,154 @@
     <small>{{ usuario.nombre }}</small>
 </h1>
 
-<form autocomplete="off" 
-[formGroup]="miFormulario"
-(ngSubmit)="guardar()">
-<div fxLayout="row" 
-     fxLayoutGap="40px">
-    <div fxFlex="100" 
-         fxLayout="column">                
-        <div    fxLayout="row" 
-                fxLayout.xs="column"
-                fxLayoutGap="20px">
-            <mat-form-field fxFlex="100" 
-                            fxLayout.xs="column">
-                <mat-label>Usuario</mat-label>
-                <input  matInput 
-                        type="text" 
-                        required=""
-                        formControlName="nombre"
-                        placeholder="Nombre del usuario">
-
-                <mat-error *ngIf="campoNoEsValido('nombre')">
-                Debe ser de 3 letras
-                </mat-error>
-            </mat-form-field>
-        
-            <mat-form-field fxFlex="100">
-                <mat-label>Apellido</mat-label>
-                <input  matInput 
-                        type="text" 
-                        required=""
-                        formControlName="apellido">
+<form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+<div class="row">
+    <div col="100">
+        <div class="row">
+            <div class="col-6">
+                <label class="form-label">Nombre</label>
+                  <input  type="text"
+                          formControlName="nombre"
+                          placeholder="Nombre del usuario"
+                          class="form-control is-invalid">
+                    
+                  <div class="invalid-feedback" *ngIf="campoNoEsValido('nombre')">
+                    Debe ser mínimo de 3 letras
+                  </div>
+            </div>
+            
+            <div class="col-6">
+              <label class="form-label">Apellido</label>
+                <input  type="text"
+                        formControlName="apellido"
+                        placeholder="Apellido del usuaro"
+                        class="form-control is-invalid">
                         
-                <mat-error *ngIf="campoNoEsValido('apellido')">
-                Debe ser de 3 letras
-                </mat-error>
-            </mat-form-field>
+                <div class="invalid-feedback" *ngIf="campoNoEsValido('apellido')">
+                    Debe ser mínimo de 3 letras
+                </div>
+            </div>
         </div>
-    
-        <mat-form-field fxFlex="100">
-            <mat-label>Correo</mat-label>
-            <input  matInput 
-                    type="text" 
-                    required=""            
-                    formControlName="correo">
-            
-                    <mat-error *ngIf="campoNoEsValido('correo')">
-                        {{ emailErrorMsg }}
-                    </mat-error>
-        </mat-form-field>
         
-        <mat-form-field fxFlex="100">
-            <mat-label>Rol</mat-label>
-            <mat-select formControlName="rol_Id"
-                        required>
-                <mat-option *ngFor="let rol of roles"
-                            [value]="rol.id">
-                            {{ rol.nombre }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field fxFlex="100">
-            <mat-label>Tipo Documento</mat-label>
-            <mat-select formControlName="tipDoc_Id"
-                        required>
-                <mat-option *ngFor="let tipo of tipodocumentos"
-                            [value]="tipo.id">
-                            {{ tipo.nombre }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field> 
-        <mat-form-field fxFlex="100">
-            <mat-label>Número de Identificación</mat-label>
-            <input  matInput 
-                    type="text" 
-                    required=""
-                    formControlName="numeroIdentificacion">
+        <div class="row">
+            <div class="col-6">
+                <label class="form-label">Correo</label>
+                <input  type="text" 
+                        formControlName="correo"
+                        placeholder="Correo electrónico"
+                        class="form-control is-invalid">
+                
+                <div class="invalid-feedback" *ngIf="campoNoEsValido('correo')">
+                    {{ emailErrorMsg }}
+                </div>
+            </div>
             
-            <mat-error *ngIf="campoNoEsValido('numeroIdentificacion')">
-                Debe ser de 3 letras
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field fxFlex="100">
-            <mat-label>Contraseña</mat-label>
-            <input  matInput 
-                    type="password" 
+              <div class="col-6">
+                <label class="form-label">Rol</label>
+                    <select class="form-select" formControlName="rol_Id"
+                                required>
+                        <option *ngFor="let rol of roles"
+                                    [value]="rol.id">
+                                    {{ rol.nombre }}
+                        </option>
+                    </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+              <label class="form-label">Tipo Documento</label>
+                <select class="form-select" formControlName="tipDoc_Id"
+                            required>
+                    <option *ngFor="let tipo of tipodocumentos"
+                                [value]="tipo.id">
+                                {{ tipo.nombre }}
+                    </option>
+                </select>
+            </div> 
+            <div class="col-6">
+              <label class="form-label">Número de Identificación</label>
+                <input  type="text" 
+                        required=""
+                        formControlName="numeroIdentificacion"
+                        class="form-control">
+                
+                <div class="invalid-feedback" *ngIf="campoNoEsValido('numeroIdentificacion')">
+                    Debe ser de 3 letras
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Empresa</label>
+              <select class="form-select" formControlName="empresa_Id"
+                          required>
+                  <option *ngFor="let empresa of empresas"
+                              [value]="empresa.id">
+                              {{ empresa.nombre }}
+                  </option>
+              </select>
+          </div>
+        </div>
+                
+        <div class="row">
+          <div class="col-6">        
+            <label class="form-label">Contraseña</label>
+            <input  type="password" 
                     required=""
                     placeholder="Password de la cuenta"
-                    formControlName="contrasenia">
+                    formControlName="contrasenia"
+                    class="form-control is-invalid">
                     
-            <mat-error *ngIf="campoNoEsValido('contrasenia')">
+            <div class="invalid-feedback" *ngIf="campoNoEsValido('contrasenia')">
                     La contraseña debe de ser mayor de 6 caracteres.
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field fxFlex="100">
-            <mat-label>Confirmar</mat-label>
-            <input  matInput 
-                    type="password" 
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Confirmar</label>
+            <input  type="password" 
                     required=""
                     placeholder="Confirmar la contraseña"
-                    formControlName="contrasenia2">
+                    formControlName="contrasenia2"
+                    class="form-control is-invalid">
                     
-            <mat-error *ngIf="campoNoEsValido('contrasenia2')">
+            <div class="invalid-feedback" *ngIf="campoNoEsValido('contrasenia2')">
                     Las contraseñas deben de ser iguales
-            </mat-error>
-        </mat-form-field>
-        <div fxLayout>
-            <button mat-raised-button 
-                    color="primary"
-                    (click)="guardar()">
-                <mat-icon>edit</mat-icon>
-                {{ (usuario.id) ? 'Actualizar': 'Crear' }}
-            </button>
-            
-            <span class="spacer"></span>
-            <button *ngIf="usuario.id"
-                mat-stroked-button 
-                color="warn"
-                type="submit">
-                <mat-icon>remove</mat-icon>
-                Borrar
-            </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-12">  
+            <div class="d-grid gap-2">  
+              <button (click)="guardar()"
+                      class="btn btn-primary">
+                  <mat-icon>edit</mat-icon>
+                  {{ (usuario.id) ? 'Actualizar': 'Crear' }}
+              </button>
+            </div>        
+          </div>        
+        </div>
+        
+        <div class="row">              
+          <div class="col-6">
+              <div class="d-grid gap-2">  
+                <button *ngIf="usuario.id" 
+                        type="submit"
+                        class="btn btn-danger">
+                  <mat-icon>remove</mat-icon>
+                    Borrar
+                </button>
+            </div>
+          </div>
+            <div class="col-6">  
+              <div *ngIf="usuario.id" class="d-grid gap-2">  
+                <button class="btn btn-outline-primary" 
+                    (click)="regresar()">Regresar
+                </button>
+              </div>
+          </div>
         </div>
     </div>
 </div>

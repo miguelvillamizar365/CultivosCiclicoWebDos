@@ -9,18 +9,42 @@
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <a routerLink="./listado"
-                mat-list-item
-                (click)="sidenav.toggle()"> 
-                <mat-icon mat-list-icon >label</mat-icon>
-                <span>Listado de Usuarios</span>
-            </a>
-            <a routerLink="./agregar"
-                mat-list-item
-                (click)="sidenav.toggle()"> 
-                <mat-icon  mat-list-icon>add</mat-icon>
-                <span>Añadir Usuario</span>
-            </a>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Usuarios
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="./listado"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Listado de Usuarios</span>
+                    </a>
+                    <a routerLink="./agregar"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon  mat-list-icon>add</mat-icon>
+                        <span>Añadir Usuario</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Actividades
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="./listado-actividad"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Listado de Actividades</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
         </mat-nav-list>
     </mat-sidenav>    
     <mat-toolbar>

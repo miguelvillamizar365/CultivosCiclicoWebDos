@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/pages/home/home.component';
+import { ListadoActividadComponent } from './pages/listado-actividad/listado-actividad.component';
 
 const rutas: Routes = [{
   path: '',
   component: HomeComponent,
-  children: [   
-    //   {
-    //   path:'listado',
-    //   component:ListadoComponent
-    // }, 
+  children: [
+       {
+        path:'listado-actividad',
+        component: ListadoActividadComponent
+       }
     // {
     //   path:'agregar',
     //   component:AgregarComponent
@@ -26,7 +27,7 @@ const rutas: Routes = [{
     //   path:'**',
     //   component:ListadoComponent
     // }, 
-]
+  ]
 }];
 
 @NgModule({

@@ -2,21 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { HomeRoutingModule } from './home-routing.module.ts.module';
-import { HomeComponent } from '../home/pages/home/home.component';
-import { MatExpansionModule } from '@angular/material/expansion';
-
+import { ActividadesRoutingModule } from './actividades-routing.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    
   ],
   imports: [
+    NgxDatatableModule,
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    HomeRoutingModule,
-    MatExpansionModule
+    ActividadesRoutingModule,
   ]
 })
-export class HomeModule { }
+export class ActividadesModule { }

@@ -11,8 +11,9 @@ export interface Usuario {
     tipoDocumento:          TipoDocumentos;
     tipDoc_Id:              TipoDocumentos;
     estado:                 number;
-    numeroIdentificacion:   string; 
+    numeroIdentificacion:   string;
     contrasenia:            string;
+    empresa_Id:             number;
 }
 
 export enum Roles{

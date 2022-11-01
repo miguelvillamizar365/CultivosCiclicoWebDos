@@ -21,6 +21,12 @@ const routes :Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path:'actividades',
+    loadChildren: () => import('./actividades/actividades.module').then(m=> m.ActividadesModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '404',
     component:ErrorPageComponent
   },

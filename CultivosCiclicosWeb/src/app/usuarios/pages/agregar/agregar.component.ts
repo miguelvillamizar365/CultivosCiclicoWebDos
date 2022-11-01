@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
 import { Rol } from '../../interfaces/rol.interface';
 import { TipoDocumento } from '../../interfaces/tipodocumento.interface';
+import { Empresa } from '../../interfaces/empresa.interface';
 
 @Component({
   selector: 'app-agregar',
@@ -20,6 +21,7 @@ import { TipoDocumento } from '../../interfaces/tipodocumento.interface';
 
 export class AgregarComponent implements OnInit {
 
+  public empresas : Empresa[] =[];
   public roles : Rol[] =[];
   public tipodocumentos: TipoDocumento[] =[];
 
@@ -34,7 +36,8 @@ export class AgregarComponent implements OnInit {
     tipoDocumento: TipoDocumentos.CedulaExtranjeria,
     tipDoc_Id: TipoDocumentos.CedulaExtranjeria,
     numeroIdentificacion: '',
-    contrasenia: ''
+    contrasenia: '',
+    empresa_Id: 0
   }
 
   public miFormulario: FormGroup = this.fb.group({
@@ -43,6 +46,7 @@ export class AgregarComponent implements OnInit {
     correo: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)]],
     rol_Id: ['', [Validators.required ]],
     tipDoc_Id: ['', [Validators.required ]],
+    empresa_Id: ['', [Validators.required ]],
     numeroIdentificacion: ['', [Validators.required, Validators.minLength(3) ]],
     contrasenia: ['', [Validators.required, Validators.minLength(8) ]],
     contrasenia2: ['', [Validators.required, Validators.minLength(8) ]],
@@ -61,6 +65,7 @@ export class AgregarComponent implements OnInit {
               }
               
   campoNoEsValido(campo: string ){
+
     return this.miFormulario.controls[campo].errors
       && this.miFormulario.controls[campo].touched;
   }
@@ -85,19 +90,16 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.usuarioServicio.getRoles()
-    .subscribe(roles => {
-      this.roles = roles;
-    });
-    
-    this.usuarioServicio.getTiposDocumentos()
-    .subscribe(tipos => {
-      this.tipodocumentos = tipos;
+    this.usuarioServicio.getTodasListasGenericas()
+    .subscribe(result => {
+      this.tipodocumentos = result.listaTipoDocumento;
+      this.roles = result.listaRoles;
+      this.empresas = result.listaEmpresas;
     });
 
     if(!this.router.url.includes('editar')){
       return;
-    } 
+    }
     
     this.activatedRoute.params.pipe(
       switchMap( ({id}) => this.usuarioServicio.getUsuarioPorId(id))
@@ -111,7 +113,8 @@ export class AgregarComponent implements OnInit {
         numeroIdentificacion: this.usuario.numeroIdentificacion,
         contrasenia: this.usuario.contrasenia,
         tipDoc_Id: this.usuario.tipDoc_Id,
-        rol_Id: this.usuario.rol_Id
+        rol_Id: this.usuario.rol_Id,
+        empresa_Id: this.usuario.empresa_Id
       });
     });
 
@@ -120,19 +123,21 @@ export class AgregarComponent implements OnInit {
       apellido: '',
       correo: '',
       numeroIdentificacion: '',
-      contrasenia: ''
+      contrasenia: '',
+      tipDoc_Id: 0,
+      rol_Id: 0,
+      empresa_Id: 0
     });
   }
 
   guardar(){
-
-    console.log(this.miFormulario);
 
     if(this.miFormulario.invalid){
       this.miFormulario.markAllAsTouched();
       return;
     }
 
+    console.log(this.usuario);
     this.usuario.nombre = this.miFormulario.value.nombre;
     this.usuario.apellido = this.miFormulario.value.apellido;
     this.usuario.correo = this.miFormulario.value.correo;
@@ -140,6 +145,7 @@ export class AgregarComponent implements OnInit {
     this.usuario.contrasenia = this.miFormulario.value.contrasenia;
     this.usuario.tipDoc_Id = this.miFormulario.value.tipDoc_Id.toString();
     this.usuario.rol_Id = this.miFormulario.value.rol_Id.toString();
+    this.usuario.empresa_Id = this.miFormulario.value.empresa_Id.toString();
     if(this.usuario.id){
       //Actualizar
       this.usuarioServicio.actualizarUsuario(this.usuario)
@@ -153,7 +159,6 @@ export class AgregarComponent implements OnInit {
       //Crear
       this.usuarioServicio.agregarUsuario(this.usuario)
       .subscribe(resp => {
-        console.log(resp);
         this.router.navigate(['/usuarios/listado']);
         this.mostrarSnackBar('Usuario Creado');
       });
@@ -185,4 +190,7 @@ export class AgregarComponent implements OnInit {
     });
   }
 
+  regresar(){
+    this.router.navigate(['/usuarios/listado']);
+  }
 }
