@@ -5,7 +5,10 @@ import { HomeComponent } from './pages/home/home.component';
 const rutas: Routes = [{
   path: '',
   component: HomeComponent,
-  children: [ ]
+  children: [
+
+    
+   ]
 }];
 
 @NgModule({

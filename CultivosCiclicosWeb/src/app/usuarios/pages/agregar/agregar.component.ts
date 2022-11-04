@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Estados, Usuario, Roles, TipoDocumentos } from '../../interfaces/usuarios.interface';
-import { UsuariosService } from '../../services/usuarios.service';
+import { UsuariosService } from '../../../services/usuarios.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
-import { Rol } from '../../interfaces/rol.interface';
+import { ListasGenericasService } from 'src/app/services/listasGenericas.service';
 import { TipoDocumento } from '../../interfaces/tipodocumento.interface';
 import { Empresa } from '../../interfaces/empresa.interface';
+import { Rol } from '../../interfaces/rol.interface';
+import { Estados, Roles, TipoDocumentos, Usuario } from '../../interfaces/usuarios.interface';
 
 @Component({
   selector: 'app-agregar',
@@ -60,7 +61,8 @@ export class AgregarComponent implements OnInit {
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
               private fb: FormBuilder,
-              private vs: ValidatorService) { 
+              private vs: ValidatorService,
+              private listasService: ListasGenericasService) { 
 
               }
               
@@ -90,7 +92,7 @@ export class AgregarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.usuarioServicio.getTodasListasGenericas()
+    this.listasService.getTodasListasGenericas()
     .subscribe(result => {
       this.tipodocumentos = result.listaTipoDocumento;
       this.roles = result.listaRoles;

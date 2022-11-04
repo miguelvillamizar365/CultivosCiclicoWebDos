@@ -9,6 +9,12 @@ const routes :Routes = [
     loadChildren: () => import('./auth/auth.module').then(m=> m.AuthModule)
   }, 
   {
+    path:'actividades',
+    loadChildren: () => import('./actividades/actividades.module').then(m=> m.ActividadesModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path:'usuarios',
     loadChildren: () => import('./usuarios/usuarios.module').then(m=> m.UsuariosModule),
     canLoad: [ AuthGuard ],
@@ -17,12 +23,6 @@ const routes :Routes = [
   {
     path:'home',
     loadChildren: () => import('./home/home.module').then(m=> m.HomeModule),
-    canLoad: [ AuthGuard ],
-    canActivate: [ AuthGuard ]
-  },
-  {
-    path:'actividades',
-    loadChildren: () => import('./actividades/actividades.module').then(m=> m.ActividadesModule),
     canLoad: [ AuthGuard ],
     canActivate: [ AuthGuard ]
   },

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Usuario } from '../../interfaces/usuarios.interface';
-import { UsuariosService } from '../../services/usuarios.service';
+import { UsuariosService } from '../../../services/usuarios.service';
 import { switchMap } from 'rxjs/operators';
+import { Usuario } from '../../interfaces/usuarios.interface';
 
 @Component({
   selector: 'app-usuario',

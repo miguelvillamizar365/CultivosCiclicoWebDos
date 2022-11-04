@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from '../interfaces/usuarios.interface';
-import { environment } from '../../../environments/environment';
-import { TipoDocumento } from '../interfaces/tipodocumento.interface';
-import { Rol } from '../interfaces/rol.interface';
-import { ListasGenericas } from '../interfaces/listasgenericas.interface';
+import { environment } from '../../environments/environment';
+import { Rol } from '../usuarios/interfaces/rol.interface';
+import { TipoDocumento } from '../usuarios/interfaces/tipodocumento.interface';
+import { Usuario } from '../usuarios/interfaces/usuarios.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +61,4 @@ export class UsuariosService {
     return this.http.post<Usuario>( this.urlBorrarUsuario + id, id, { headers: this.headers});
   }
 
-  getTodasListasGenericas(): Observable<ListasGenericas>{
-    return this.http.get<ListasGenericas>( this.urlGetTodasListasGenericas, { headers: this.headers});
-  }
 }

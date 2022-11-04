@@ -1,0 +1,117 @@
+<mat-grid-list cols="1" *ngIf="!listaActividades; else divListaActividades">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divListaActividades>
+  <h1>Listado de Actividades</h1>
+  <mat-divider></mat-divider>
+  <br />
+
+  <form autocomplete="off" [formGroup]="miFormulario">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="d-grid gap-2">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Listado de usuarios</mat-label>
+              <input type="text" placeholder="Seleccione un usuario" aria-label="Number" matInput
+                formControlName="usuario" [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario">
+                  {{ usuario.nombreCompleto }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="d-grid gap-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Ingrese el rango de fechas</mat-label>
+              <mat-date-range-input [formGroup]="miFormulario" [rangePicker]="picker">
+                <input matStartDate formControlName="fechaInicio" placeholder="Fecha Inicio" class="form-control">
+                <input matEndDate formControlName="fechaFin" placeholder="Fecha Fin " class="form-control">
+              </mat-date-range-input>
+              <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+
+              <div class="invalid-feedback" *ngIf="campoNoEsValido('fechaInicio')">
+                Fecha de inicio invalida
+              </div>
+              <div class="invalid-feedback" *ngIf="campoNoEsValido('fechaFin')">
+                Fecha de fin invalida
+              </div>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form-label">Tipo Actividad</label>
+        <select class="form-select" formControlName="tipoactividad_Id" required>
+          <option *ngFor="let tipoActividad of listaTipoActividad" [value]="tipoActividad.id">
+            {{ tipoActividad.nombre }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-12">
+      <br />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="d-grid gap-2">
+        <button (click)="buscarByFiltros()" class="btn btn-primary">
+          <mat-icon>search</mat-icon>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <br />
+    </div>
+  </div>
+  <ngx-datatable class="material container striped" [rows]="listaActividades" [columnMode]="'flex'" [headerHeight]="50"
+    [footerHeight]="50" rowHeight="auto">
+    <ngx-datatable-column name="Id" [flexGrow]="0.5">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button mat-stroked-button color="warn" (click)="verDetalle(value)">
+          Detalles
+        </button>
+        <button mat-raised-button color="primary" (click)="EditarRegistro(value)">
+          Editar
+        </button>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="nombre">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="descripcion">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="observaciones">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="tipoActividad">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="estado">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="fechaActividad">
+    </ngx-datatable-column>
+    <ngx-datatable-column [flexGrow]="0.5" name="Usuario">
+    </ngx-datatable-column>
+  </ngx-datatable>
+</ng-template>

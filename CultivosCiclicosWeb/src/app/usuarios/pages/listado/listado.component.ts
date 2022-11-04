@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Usuario } from '../../interfaces/usuarios.interface';
-import { UsuariosService } from '../../services/usuarios.service';
+import { UsuariosService } from '../../../services/usuarios.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Usuario } from '../../interfaces/usuarios.interface';
 
 @Component({
   selector: 'app-listado',
@@ -15,27 +15,29 @@ export class ListadoComponent implements OnInit {
   
   public usuarios:             Usuario[] = [];
   public usuarioSeleccionado!: Usuario | undefined;
-  public listaUsuario:         Usuario[] = [];
+  public listaUsuario!:         Usuario[];
 
   public miFormulario: FormGroup = this.fb.group({
     termino: ['']
   });
+  
+  options = {}
 
   constructor(private usuarioService: UsuariosService,
-              private usuarioServicio: UsuariosService,
               private fb: FormBuilder, 
               private router: Router) { }
 
   ngOnInit(): void {
     this.usuarioService.getUsuarios()
     .subscribe( resp => {
+
       this.listaUsuario = resp;
     });
   }
   
   buscarUsuario()
-  {    
-    this.usuarioServicio.getSugerencias(this.miFormulario.value.termino.trim())
+  {
+    this.usuarioService.getSugerencias(this.miFormulario.value.termino.trim())
     .subscribe( usuarios => this.usuarios = usuarios);
   }
 
@@ -47,18 +49,18 @@ export class ListadoComponent implements OnInit {
     }
     const usuario: Usuario = event.option.value;
     
-    this.usuarioServicio.getUsuarioPorId( usuario.id!)
+    this.usuarioService.getUsuarioPorId( usuario.id!)
     .subscribe( usuario => 
       {
         this.usuarioSeleccionado = usuario;
         
         this.miFormulario.reset({
-          termino: this.usuarioSeleccionado.nombreCompleto
+          termino: this.usuarioSeleccionado!.nombreCompleto
         });            
       });
   }
 
-  refrescar(){    
+  refrescar(){
     this.usuarioSeleccionado = undefined;
   }
   
@@ -73,8 +75,7 @@ export class ListadoComponent implements OnInit {
   }
 
   EditarRegistro(value: any)
-  {    
+  {
     this.router.navigate(['/usuarios/editar', value]);
-  }
-  
+  }  
 }

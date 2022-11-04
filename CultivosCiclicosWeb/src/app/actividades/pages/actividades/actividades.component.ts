@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actividades.component.css']
 })
 export class ActividadesComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
+    
   }
-
 }

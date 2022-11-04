@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { UsuarioAuth } from '../../../usuarios/interfaces/usuarios.interface';
 import { Auth } from "../../interfaces/auth.interface";
 import { tap, Observable, map, of, catchError} from 'rxjs';
-import { Router } from '@angular/router';
+import { UsuarioAuth } from "src/app/usuarios/interfaces/usuarios.interface";
 
 @Injectable({
   providedIn: 'root'  

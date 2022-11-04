@@ -10,7 +10,7 @@
 <div class="row">
     <div col="100">
         <div class="row">
-            <div class="col-6">
+          <div class="col-md-6">
                 <label class="form-label">Nombre</label>
                   <input  type="text"
                           formControlName="nombre"
@@ -22,7 +22,7 @@
                   </div>
             </div>
             
-            <div class="col-6">
+            <div class="col-md-6">
               <label class="form-label">Apellido</label>
                 <input  type="text"
                         formControlName="apellido"
@@ -36,7 +36,7 @@
         </div>
         
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <label class="form-label">Correo</label>
                 <input  type="text" 
                         formControlName="correo"
@@ -48,7 +48,7 @@
                 </div>
             </div>
             
-              <div class="col-6">
+              <div class="col-md-6">
                 <label class="form-label">Rol</label>
                     <select class="form-select" formControlName="rol_Id"
                                 required>
@@ -57,11 +57,11 @@
                                     {{ rol.nombre }}
                         </option>
                     </select>
-            </div>
+              </div>
         </div>
         
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
               <label class="form-label">Tipo Documento</label>
                 <select class="form-select" formControlName="tipDoc_Id"
                             required>
@@ -71,7 +71,7 @@
                     </option>
                 </select>
             </div> 
-            <div class="col-6">
+            <div class="col-md-6">
               <label class="form-label">Número de Identificación</label>
                 <input  type="text" 
                         required=""
@@ -98,7 +98,7 @@
         </div>
                 
         <div class="row">
-          <div class="col-6">        
+          <div class="col-md-6">        
             <label class="form-label">Contraseña</label>
             <input  type="password" 
                     required=""
@@ -110,7 +110,7 @@
                     La contraseña debe de ser mayor de 6 caracteres.
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <label class="form-label">Confirmar</label>
             <input  type="password" 
                     required=""
@@ -126,6 +126,12 @@
         
         <div class="row">
           <div class="col-12">  
+            <br />        
+          </div>        
+        </div>
+
+        <div class="row">
+          <div class="col-12">  
             <div class="d-grid gap-2">  
               <button (click)="guardar()"
                       class="btn btn-primary">
@@ -137,7 +143,7 @@
         </div>
         
         <div class="row">              
-          <div class="col-6">
+          <div class="col-md-6">
               <div class="d-grid gap-2">  
                 <button *ngIf="usuario.id" 
                         type="submit"
@@ -147,7 +153,7 @@
                 </button>
             </div>
           </div>
-            <div class="col-6">  
+            <div class="col-md-6">  
               <div *ngIf="usuario.id" class="d-grid gap-2">  
                 <button class="btn btn-outline-primary" 
                     (click)="regresar()">Regresar

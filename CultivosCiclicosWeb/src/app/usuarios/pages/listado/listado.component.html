@@ -1,35 +1,45 @@
-<h1>Listado de Usuarios</h1>
-<mat-divider></mat-divider>
-<br/>
 
-<ngx-datatable class="material container striped"
-  [rows]="listaUsuario" 
-  [columnMode]="'flex'"
-  [headerHeight]="50"
-  [footerHeight]="50"
-  rowHeight="auto">
-      <ngx-datatable-column name="Id" [flexGrow]="0.5">
-        <ng-template let-row="row" let-value="value"
-         ngx-datatable-cell-template>
-            <button mat-stroked-button color="warn"
-            (click)="verDetalle(value)">
-                Detalles
-            </button>
-            <button mat-raised-button 
-            color="primary"
-            (click)="EditarRegistro(value)">
-                Editar
-            </button>
-        </ng-template>  
-      </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="NombreCompleto">
-      </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Correo">
-      </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Rol">
-      </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="TipoDocumento">
-      </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="NumeroIdentificacion">
-      </ngx-datatable-column>
-  </ngx-datatable>
+
+<mat-grid-list cols="1" *ngIf="!listaUsuario; else divListaUsuario">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divListaUsuario>
+        <h1>Listado de Usuarios</h1>
+        <mat-divider></mat-divider>
+        <br/>
+    <ngx-datatable 
+    class="material container striped"
+    [rows]="listaUsuario" 
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto">
+        <ngx-datatable-column name="Id" [flexGrow]="0.5">
+            <ng-template let-row="row" let-value="value"
+            ngx-datatable-cell-template>
+                <button mat-stroked-button color="warn"
+                (click)="verDetalle(value)">
+                    Detalles
+                </button>
+                <button mat-raised-button 
+                color="primary"
+                (click)="EditarRegistro(value)">
+                    Editar
+                </button>
+            </ng-template>  
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="0.5" name="NombreCompleto">
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="0.5" name="Correo">
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="0.5" name="Rol">
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="0.5" name="TipoDocumento">
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="0.5" name="NumeroIdentificacion">
+        </ngx-datatable-column>
+    </ngx-datatable>  
+</ng-template>

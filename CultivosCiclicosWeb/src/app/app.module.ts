@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
