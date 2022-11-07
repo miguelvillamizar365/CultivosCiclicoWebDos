@@ -17,13 +17,17 @@
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Listado de usuarios</mat-label>
               <input type="text" placeholder="Seleccione un usuario" aria-label="Number" matInput
-                formControlName="usuario" [matAutocomplete]="auto">
+                formControlName="usuario" [matAutocomplete]="auto" class="form-control is-invalid">
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario">
                   {{ usuario.nombreCompleto }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
+            
+          <div class="invalid-feedback" *ngIf="campoNoEsValido('usuario')">
+            Debe selecionar un usuario
+          </div>
           </div>
         </div>
       </div>

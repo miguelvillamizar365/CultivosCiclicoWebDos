@@ -1,0 +1,69 @@
+<mat-grid-list cols="1" *ngIf="!actividad; else divActividad">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divActividad>
+    
+<form autocomplete="off">
+    <div class="row">
+        <div col="100">
+          <div class="row">
+            <div class="col-md-12">              
+              <mat-label>Nombre Actividad</mat-label>
+              <input type="text" placeholder="Nombre de la actividad"
+              class="form-control" [value]="actividad.nombre" readonly disabled>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-6">
+                <mat-label>Fecha actividad</mat-label>
+                <input type="text" placeholder="Fecha actividad"
+                class="form-control" [value]="actividad.fechaActividad | date:'medium'" readonly disabled>
+            </div>
+    
+            <div class="col-md-6">              
+              <mat-label>Tipo Actividad</mat-label>
+              <input type="text" placeholder="Tipo de Actividad"
+              class="form-control" [value]="actividad.tipoActividadNombre" readonly disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <mat-label>Nombre Usuario</mat-label>
+                
+              <input type="text" placeholder="Nombre Usuario"
+              class="form-control" [value]="actividad.nombreUsuario" readonly disabled>
+            </div>
+          
+            <div class="col-md-6">
+                <mat-label>Descripción</mat-label>
+                <input type="text" placeholder="Descripción"
+                class="form-control" [value]="actividad.descripcion" readonly disabled>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-12">
+                <mat-label>Observaciones</mat-label>
+                <textarea placeholder="observaciones de la actividad" class="form-control" 
+                [value]="actividad.observaciones" readonly disabled>
+                </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2">
+                    <button mat-stroked-button 
+                    color="primary"
+                    (click)="regresar()">Regresar
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+</ng-template>

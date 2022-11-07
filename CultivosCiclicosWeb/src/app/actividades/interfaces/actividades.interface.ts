@@ -4,9 +4,12 @@ export interface Actividades {
     id?: number;
     nombre: string;
     estadoId: number;
+    estadoNombre: string;
     observaciones: string;
     descripcion: string;
     fechaActividad: Date;
-    Usuario_Id: number;
-    TipoActividad_Id: number;
+    usuario_Id: number;
+    nombreUsuario: string;
+    tipoActividad_Id: number;
+    tipoActividadNombre: string;
 }

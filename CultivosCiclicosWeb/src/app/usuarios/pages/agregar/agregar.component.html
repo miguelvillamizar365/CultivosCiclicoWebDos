@@ -10,7 +10,7 @@
 <div class="row">
     <div col="100">
         <div class="row">
-          <div class="col-md-6">
+            <div class="col-md-6">
                 <label class="form-label">Nombre</label>
                   <input  type="text"
                           formControlName="nombre"
@@ -18,7 +18,7 @@
                           class="form-control is-invalid">
                     
                   <div class="invalid-feedback" *ngIf="campoNoEsValido('nombre')">
-                    Debe ser mínimo de 3 letras
+                    Debe ser mínimo de 3 caracteres
                   </div>
             </div>
             
@@ -30,7 +30,7 @@
                         class="form-control is-invalid">
                         
                 <div class="invalid-feedback" *ngIf="campoNoEsValido('apellido')">
-                    Debe ser mínimo de 3 letras
+                    Debe ser mínimo de 3 caracteres
                 </div>
             </div>
         </div>
@@ -74,12 +74,12 @@
             <div class="col-md-6">
               <label class="form-label">Número de Identificación</label>
                 <input  type="text" 
-                        required=""
+                        required
                         formControlName="numeroIdentificacion"
-                        class="form-control">
+                        class="form-control is-invalid">
                 
                 <div class="invalid-feedback" *ngIf="campoNoEsValido('numeroIdentificacion')">
-                    Debe ser de 3 letras
+                    Debe ser de 3 caracteres
                 </div>
             </div>
         </div>

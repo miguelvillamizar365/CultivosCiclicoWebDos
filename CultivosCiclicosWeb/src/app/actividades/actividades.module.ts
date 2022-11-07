@@ -6,12 +6,13 @@ import { ActividadesRoutingModule } from './actividades-routing.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { ActividadesComponent } from './pages/actividades/actividades.component';
+import { AgregarComponent } from './pages/agregar/agregar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-// import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
+    AgregarComponent,
     ListadoComponent,
     ActividadesComponent
   ],
@@ -22,9 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ActividadesRoutingModule,
     NgxDatatableModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-    // MatMomentDateModule,
-    // MomentDateAdapter
+    MatNativeDateModule
   ]
 })
 export class ActividadesModule { }

@@ -1,0 +1,129 @@
+<h1>
+  {{
+  (actividad.id) ? 'Editar': 'Nueva'
+  }}
+  Actividad
+  <small>{{ actividad.nombre }}</small>
+</h1>
+
+<form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+  <div class="row">
+    <div col="100">
+      <div class="row">
+        <div class="col-md-12">
+          <label class="form-label">Nombre</label>
+          <input type="text" formControlName="nombre" placeholder="Nombre de la actividad"
+            class="form-control is-invalid">
+
+          <div class="invalid-feedback" *ngIf="campoNoEsValido('nombre')">
+            Debe ser mínimo de 3 letras
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="d-grid gap-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Ingrese la Fecha</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="fechaActividad">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div class="invalid-feedback" *ngIf="campoNoEsValido('fechaActividad')">
+              Por favor ingrese una fecha valida
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Tipo Actividad</label>
+          <select class="form-select" formControlName="tipoActividad_Id" required>
+            <option *ngFor="let tipoActividad of listaTipoActividad" [value]="tipoActividad.id">
+              {{ tipoActividad.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-md-12">
+            <div class="d-grid gap-2">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Listado de usuarios</mat-label>
+                <input type="text" placeholder="Seleccione un usuario" aria-label="Number" matInput
+                  formControlName="usuario" [matAutocomplete]="auto" class="form-control is-invalid">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario">
+                      {{ usuario.nombreCompleto }}
+                    </mat-option>
+                  </mat-autocomplete>
+              </mat-form-field>
+              
+            <div class="invalid-feedback" *ngIf="campoNoEsValido('usuario')">
+              Debe selecionar un usuario
+            </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-md-6">
+          <label class="form-label">Descripción</label>
+          <input type="text" formControlName="descripcion" placeholder="descripción de la actividad"
+            class="form-control is-invalid">
+          <div class="invalid-feedback" *ngIf="campoNoEsValido('descripcion')">
+            Debe ser mínimo de 3 letras
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <label class="form-label">Observaciones</label>
+          <textarea formControlName="observaciones" placeholder="observaciones de la actividad"
+            class="form-control is-invalid">
+            </textarea>
+
+          <div class="invalid-feedback" *ngIf="campoNoEsValido('observaciones')">
+            Debe ser mínimo de 3 letras
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="d-grid gap-2">
+            <button (click)="guardar()" class="btn btn-primary">
+              <mat-icon>edit</mat-icon>
+              {{ (actividad.id) ? 'Actualizar': 'Crear' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="d-grid gap-2">
+            <button *ngIf="actividad.id" type="submit" class="btn btn-danger">
+              <mat-icon>remove</mat-icon>
+              Borrar
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div *ngIf="actividad.id" class="d-grid gap-2">
+            <button class="btn btn-outline-primary" (click)="regresar()">Regresar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

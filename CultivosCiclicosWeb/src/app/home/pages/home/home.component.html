@@ -37,11 +37,17 @@
                             Actividades
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <a routerLink="../actividades/listado-actividad"
+                    <a routerLink="../actividades/listado"
                         mat-list-item
                         (click)="sidenav.toggle()"> 
                         <mat-icon mat-list-icon >label</mat-icon>
                         <span>Listado de Actividades</span>
+                    </a>                    
+                    <a routerLink="../actividades/agregar"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon  mat-list-icon>add</mat-icon>
+                        <span>Añadir Actividades</span>
                     </a>
                 </mat-expansion-panel>
             </mat-accordion>

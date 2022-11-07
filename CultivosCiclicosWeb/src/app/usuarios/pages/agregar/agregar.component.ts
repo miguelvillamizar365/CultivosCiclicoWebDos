@@ -42,13 +42,13 @@ export class AgregarComponent implements OnInit {
   }
 
   public miFormulario: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(3) ]],
-    apellido: ['', [Validators.required, Validators.minLength(3) ]],
-    correo: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)]],
-    rol_Id: ['', [Validators.required ]],
-    tipDoc_Id: ['', [Validators.required ]],
-    empresa_Id: ['', [Validators.required ]],
-    numeroIdentificacion: ['', [Validators.required, Validators.minLength(3) ]],
+    nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
+    apellido: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200) ]],
+    correo: ['', [Validators.required, Validators.pattern(this.vs.emailPattern), Validators.maxLength(300)]],
+    rol_Id: ['0', [Validators.required ]],
+    tipDoc_Id: ['0', [Validators.required ]],
+    empresa_Id: ['0', [Validators.required ]],
+    numeroIdentificacion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
     contrasenia: ['', [Validators.required, Validators.minLength(8) ]],
     contrasenia2: ['', [Validators.required, Validators.minLength(8) ]],
   },{
@@ -139,7 +139,6 @@ export class AgregarComponent implements OnInit {
       return;
     }
 
-    console.log(this.usuario);
     this.usuario.nombre = this.miFormulario.value.nombre;
     this.usuario.apellido = this.miFormulario.value.apellido;
     this.usuario.correo = this.miFormulario.value.correo;
@@ -148,7 +147,17 @@ export class AgregarComponent implements OnInit {
     this.usuario.tipDoc_Id = this.miFormulario.value.tipDoc_Id.toString();
     this.usuario.rol_Id = this.miFormulario.value.rol_Id.toString();
     this.usuario.empresa_Id = this.miFormulario.value.empresa_Id.toString();
-    if(this.usuario.id){
+
+    if(this.miFormulario.value.tipDoc_Id.toString() == '0'){
+        this.mostrarSnackBar('Por favor seleccione el tipo de documento');
+    }
+    else if(this.miFormulario.value.rol_Id.toString() == '0'){      
+      this.mostrarSnackBar('Por favor selecicone el rol del usuario');
+    }
+    else if(this.miFormulario.value.empresa_Id.toString() == '0'){      
+      this.mostrarSnackBar('Por favor seleccione la empresa');
+    }
+    else if(this.usuario.id){
       //Actualizar
       this.usuarioServicio.actualizarUsuario(this.usuario)
       .subscribe(usuario => {

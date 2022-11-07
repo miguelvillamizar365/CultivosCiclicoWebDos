@@ -16,7 +16,6 @@ export class UsuariosService {
   private headers;
   private urlGetRoles: string = `${this.baseUrl}api/ListasGenericas/ObtenerTodosRoles`;
   private urlGetTiposDocumentos : string = `${this.baseUrl}api/ListasGenericas/ObtenerTodosTiposDocumentos`;
-  private urlGetTodasListasGenericas: string = `${this.baseUrl}api/ListasGenericas/ObtenerTodasListasGenericas`;
   private urlGetUsuarios : string = `${this.baseUrl}api/Usuarios`;
   private urlGetUsuarioPorId : string = `${this.baseUrl}api/Usuarios/${0}`;
   private urlGetSugerencias : string = this.baseUrl + "api/Usuarios/GetByName?userName=";
