@@ -9,7 +9,13 @@
             </button>
         </mat-toolbar>
         <mat-nav-list>
-            <mat-accordion>
+            <a routerLink="../home/inicio"
+                mat-list-item
+                (click)="sidenav.toggle()"> 
+                <mat-icon mat-list-icon >label</mat-icon>
+                <span>Inicio</span>
+            </a>
+            <mat-accordion *ngIf="UsuariosEnabled">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -30,7 +36,7 @@
                     </a>
                 </mat-expansion-panel>
             </mat-accordion>
-            <mat-accordion>
+            <mat-accordion *ngIf="ActividadesEnabled">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -66,6 +72,8 @@
         </button>
     </mat-toolbar>
     <div class="container">
-        <router-outlet></router-outlet>
+        <router-outlet>
+            <app-inicio></app-inicio>
+        </router-outlet>
     </div>    
 </mat-sidenav-container>

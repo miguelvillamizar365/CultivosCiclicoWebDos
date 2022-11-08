@@ -4,4 +4,5 @@ export interface Auth{
     usuarioCompleto:    string;
     token:              string;
     ok:                 boolean;
+    rol_Id:             number;
 }

@@ -41,7 +41,8 @@ export class AuthService {
             correo: auth.correo,
             token: auth.token,
             usuarioCompleto: auth.usuarioCompleto,
-            ok: true
+            ok: true,
+            rol_Id: auth.rol_Id
           }
           return true;
         }),
@@ -61,6 +62,7 @@ export class AuthService {
               this._auth = auth;
               this._auth.ok = true;
               localStorage.setItem('token', auth.token);
+              localStorage.setItem('rol_id', auth.rol_Id.toString());
             }
           }),
           map( resp => resp),
