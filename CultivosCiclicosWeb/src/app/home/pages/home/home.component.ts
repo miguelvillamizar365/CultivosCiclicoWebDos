@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit
 
   UsuariosEnabled = false;
   ActividadesEnabled = false;
+  RegistroSiembraEnabled = false;
   constructor(private router: Router,
     private authService: AuthService) { }
 
@@ -27,14 +28,17 @@ export class HomeComponent implements OnInit
     if(rol_id == "1"){
       this.UsuariosEnabled = true;
       this.ActividadesEnabled = true;
+      this.RegistroSiembraEnabled = true;
     }
     //Asesor de cultivo (Web)    
     else if(rol_id == "2"){
       this.ActividadesEnabled = true;
+      this.RegistroSiembraEnabled = true;
     }
     //Asesor comercial (Web)
-    else if(rol_id == "5"){
-      
+    else if(rol_id == "5"){      
+      this.ActividadesEnabled = false;
+      this.RegistroSiembraEnabled = false;
     }
   }
 

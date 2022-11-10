@@ -27,6 +27,12 @@ const routes :Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path:'registro-siembra',
+    loadChildren: () => import('./registro-siembra/registro-siembra.mopdule').then(m=> m.RegistroSiembraModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '404',
     component:ErrorPageComponent
   },

@@ -4,8 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistroSiembraRoutingModule } from '../registro-siembra/registro-siembra-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ListadoComponent } from './pages/listado/listado.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable'; 
 
 @NgModule({
   declarations: [

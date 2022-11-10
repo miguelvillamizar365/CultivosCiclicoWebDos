@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.miFormularioLogin.value.Contrasenia).subscribe(resp => {
 
         if(resp.ok){
-          this.router.navigate(['./home']);
+          this.router.navigate(['./home/inicio']);
         }
         else{
           this.mostrarSnackBar(resp.error);

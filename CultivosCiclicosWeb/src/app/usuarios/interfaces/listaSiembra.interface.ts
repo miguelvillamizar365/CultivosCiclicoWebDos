@@ -1,11 +1,11 @@
 
 export interface ListaSiembra {
-    AreaMuestra_Id:         number;
-    AreaMuestra_Nombre:     string;
-    Variedad_Id:            number;
-    Variedad_Nombre:        string;
-    Estado_Id:              number;
-    Estado_Nombre:          string;
+    AreaMuestraId:          number;
+    AreaMuestraNombre:      string;
+    VariedadId:             number;
+    VariedadNombre:         string;
+    EstadoId:               number;
+    EstadoNombre:           string;
     FechaRegistroSiembra:   Date;
     Usuario:                string;
 }

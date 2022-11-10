@@ -7,15 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { RegistroSiembraComponent } from './registro-siembra/registro-siembra.component';
-import { ListadoComponent } from './registro-siembra/pages/listado/listado.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent,
-    RegistroSiembraComponent,
-    ListadoComponent
+    ErrorPageComponent
   ],
   imports: [
     NgxDatatableModule,
