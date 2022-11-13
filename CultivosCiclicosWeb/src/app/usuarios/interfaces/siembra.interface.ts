@@ -2,6 +2,7 @@
 export interface Siembra {
     id:                     number;
     areaSiembraId:          number;
+    areaSiembraNombre:      string;
     areaMuestraId:          number;
     areaMuestraNombre?:     string;
     variedadId:             number;

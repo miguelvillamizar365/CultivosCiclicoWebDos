@@ -30,6 +30,7 @@ export class EditarComponent implements OnInit
   siembra: Siembra = {
     id:                     0,
     areaSiembraId:          0,
+    areaSiembraNombre:      '',
     areaMuestraId:          0,
     variedadId:             0,
     estadoId:               Number.parseInt(Estados.Activo),
@@ -47,7 +48,7 @@ export class EditarComponent implements OnInit
     variedad_Id: ['0', [Validators.required ]],
     actividadId: ['0', [Validators.required ]],
     cantidad: ['', [Validators.required ]],
-    observaciones: ['', [Validators.required ]]
+    observaciones: ['', [Validators.required, Validators.maxLength(300) ]]
   });
   
   constructor(private siembraService: SiembraService,
@@ -87,13 +88,6 @@ export class EditarComponent implements OnInit
       });
     });
     
-    // this.miFormulario.reset({
-    //   areamuestra_Id: '',
-    //   areasiembra_Id: '',
-    //   variedad_Id: '',
-    //   cantidad: '',
-    //   observaciones: ''
-    // });
   }
   
   
@@ -142,8 +136,11 @@ export class EditarComponent implements OnInit
     if(this.miFormulario.value.areamuestra_Id.toString() == '0'){
         this.mostrarSnackBar('Por favor seleccione el área de siembra');
     }
-    else if(this.miFormulario.value.variedad_Id.toString() == '0'){      
+    else if(this.miFormulario.value.variedad_Id.toString() == '0'){
       this.mostrarSnackBar('Por favor seleccione la variedad');
+    }
+    else if(this.miFormulario.value.actividadId.toString() == '0'){
+      this.mostrarSnackBar('Por favor seleccione la actividad');
     }
     else if(this.siembra.id){
       //Actualizar

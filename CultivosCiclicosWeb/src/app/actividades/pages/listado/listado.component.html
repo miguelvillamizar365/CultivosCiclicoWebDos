@@ -114,6 +114,9 @@
     <ngx-datatable-column [flexGrow]="0.5" name="Estado de la actividad" prop="estado">
     </ngx-datatable-column>
     <ngx-datatable-column [flexGrow]="0.5" name="Fecha de la actividad" prop="fechaActividad">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{ value | date:'medium'}}
+      </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [flexGrow]="0.5" name="Nombre del usuario" prop="usuario">
     </ngx-datatable-column>

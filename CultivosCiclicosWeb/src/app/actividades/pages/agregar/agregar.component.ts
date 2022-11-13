@@ -101,8 +101,6 @@ export class AgregarComponent implements OnInit {
         tipoActividad_Id: this.actividad.tipoActividad_Id,
         usuario: {id: this.actividad.usuario_Id, nombreCompleto: this.actividad.nombreUsuario}
       });
-
-      console.log(this.miFormulario);
     });
 
   }

@@ -64,7 +64,7 @@ export class ListadoComponent implements OnInit {
     else if(this.miFormulario.value.variedad_Id.toString() == '0'){
       this.mostrarSnackBar('Por favor seleccione la variedad');
     }
-    else if(this.miFormulario.value.usuario.id.toString() == '0'){
+    else if(this.miFormulario.value.usuario == null){
       this.mostrarSnackBar('Por favor seleccione el usuario');
     }
     else if(this.miFormulario.status != 'INVALID')
@@ -86,7 +86,7 @@ export class ListadoComponent implements OnInit {
   
   verDetalle(value: any)
   {
-    this.router.navigate(['/registro-siembra', value]);  
+    this.router.navigate(['/registro-siembra/registro-siembra', value]);  
   }
 
   EditarRegistro(value: any)
