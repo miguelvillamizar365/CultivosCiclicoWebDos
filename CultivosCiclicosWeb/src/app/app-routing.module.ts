@@ -28,7 +28,7 @@ const routes :Routes = [
   },
   {
     path:'registro-siembra',
-    loadChildren: () => import('./registro-siembra/registro-siembra.mopdule').then(m=> m.RegistroSiembraModule),
+    loadChildren: () => import('./registro-siembra/registro-siembra.module').then(m=> m.RegistroSiembraModule),
     canLoad: [ AuthGuard ],
     canActivate: [ AuthGuard ]
   },

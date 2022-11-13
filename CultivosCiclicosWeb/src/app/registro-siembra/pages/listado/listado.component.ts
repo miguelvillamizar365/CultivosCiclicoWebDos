@@ -7,7 +7,7 @@ import { SiembraService } from 'src/app/services/siembra.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { AreaMuestra } from 'src/app/usuarios/interfaces/areamuestra.interface';
 import { AreaSiembra } from 'src/app/usuarios/interfaces/areasiembra.interface';
-import { ListaSiembra } from 'src/app/usuarios/interfaces/listaSiembra.interface';
+import { Siembra } from 'src/app/usuarios/interfaces/siembra.interface';
 import { Usuario } from 'src/app/usuarios/interfaces/usuarios.interface';
 import { Variedad } from 'src/app/usuarios/interfaces/variedad.interface';
 
@@ -19,7 +19,7 @@ import { Variedad } from 'src/app/usuarios/interfaces/variedad.interface';
 })
 export class ListadoComponent implements OnInit {
 
-  public listaSiembra:       ListaSiembra[] = [];
+  public listaSiembra:       Siembra[] = [];
   public listaAreaSiembra:   AreaSiembra[] = [];  
   public listaAreaMuestraGlobal:  AreaMuestra[] = [];
   public listaAreaMuestra:   AreaMuestra[] = [];
@@ -81,19 +81,17 @@ export class ListadoComponent implements OnInit {
     this.siembraService.getListadoRegistroSiembra(usuario, areaMuestra_id, variedad_id)
     .subscribe( resp => {
       this.listaSiembra = resp;
-
-      console.log(this.listaSiembra);
     });
   }
   
   verDetalle(value: any)
   {
-    this.router.navigate(['/actividades', value]);  
+    this.router.navigate(['/registro-siembra', value]);  
   }
 
   EditarRegistro(value: any)
   {
-    this.router.navigate(['/actividades/editar', value]);
+    this.router.navigate(['/registro-siembra/editar', value]);
   }
   
   campoNoEsValido(campo: string )

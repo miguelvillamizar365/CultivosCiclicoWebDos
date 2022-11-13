@@ -92,7 +92,7 @@ export class AgregarComponent implements OnInit {
       )
     .subscribe(actividad => {
       this.actividad = actividad;
-      console.log(this.actividad)
+      
       this.miFormulario.reset({
         nombre: this.actividad.nombre,
         observaciones: this.actividad.observaciones,
@@ -105,19 +105,6 @@ export class AgregarComponent implements OnInit {
       console.log(this.miFormulario);
     });
 
-    // this.miFormulario.reset({
-    //     nombre: '',
-    //     estadoId: 0,
-    //     estado: '',
-    //     observaciones: '',
-    //     descripcion: '',
-    //     fechaActividad: new Date(),
-    //     Usuario_Id: 0,
-    //     NombreUsuario: '',
-    //     TipoActividad_Id: 0,
-    //     TipoActividad: '',
-    //     Usuario: {}
-    // });    
   }
 
   guardar()
