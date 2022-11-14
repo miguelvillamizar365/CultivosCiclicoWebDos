@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit
   UsuariosEnabled = false;
   ActividadesEnabled = false;
   RegistroSiembraEnabled = false;
+  ClasificacionEnabled = false;
+
   constructor(private router: Router,
     private authService: AuthService) { }
 
@@ -29,16 +31,21 @@ export class HomeComponent implements OnInit
       this.UsuariosEnabled = true;
       this.ActividadesEnabled = true;
       this.RegistroSiembraEnabled = true;
+      this.ClasificacionEnabled = true;
     }
     //Asesor de cultivo (Web)    
-    else if(rol_id == "2"){
+    else if(rol_id == "2"){      
+      this.UsuariosEnabled = false;
       this.ActividadesEnabled = true;
       this.RegistroSiembraEnabled = true;
+      this.ClasificacionEnabled = true;
     }
     //Asesor comercial (Web)
     else if(rol_id == "5"){      
+      this.UsuariosEnabled = false;
       this.ActividadesEnabled = false;
       this.RegistroSiembraEnabled = false;
+      this.ClasificacionEnabled = false;
     }
   }
 

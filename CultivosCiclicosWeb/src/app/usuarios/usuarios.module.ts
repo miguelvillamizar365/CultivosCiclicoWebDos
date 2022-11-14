@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsuariosRoutingModule } from './usuarios-routing.module.ts.module';
+import { UsuariosRoutingModule } from './usuarios-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { ListadoComponent } from './pages/listado/listado.component';

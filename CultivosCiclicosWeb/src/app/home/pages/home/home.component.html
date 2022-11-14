@@ -72,6 +72,21 @@
                     </a>
                 </mat-expansion-panel>
             </mat-accordion>
+            <mat-accordion *ngIf="ClasificacionEnabled">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Clasificación
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="../clasificacion/listado"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Listado de Clasificación de Siembra</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
         </mat-nav-list>
     </mat-sidenav>    
     <mat-toolbar>

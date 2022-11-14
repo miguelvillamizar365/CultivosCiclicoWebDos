@@ -33,6 +33,12 @@ const routes :Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path:'clasificacion',
+    loadChildren: () => import('./clasificacion/clasificacion.module').then(m=> m.ClasificaiconModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '404',
     component:ErrorPageComponent
   },

@@ -1,0 +1,121 @@
+<mat-grid-list cols="1" *ngIf="!listaClasificacion; else divlistaSiembra">
+    <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+  <ng-template #divlistaSiembra>
+    <h1>Listado de clasificación de siembra</h1>
+    <mat-divider></mat-divider>
+    <br />
+  
+    <form autocomplete="off" [formGroup]="miFormulario">
+        <div class="row">
+          <div class="col-md-6">
+          <div class="d-grid gap-2">
+              <mat-form-field appearance="fill">
+              <mat-label>Área de siembra</mat-label>
+              <mat-select (selectionChange)="mostrarAreaMuestra($event)" formControlName="areasiembra_Id"
+                  name="AreaSiembra" required>
+                  <mat-option *ngFor="let areaSiembra of listaAreaSiembra" [value]="areaSiembra.id">
+                  {{ areaSiembra.nombre }}
+                  </mat-option>
+              </mat-select>
+              </mat-form-field>
+          </div>
+          </div>
+          <div class="col-md-6">     
+          <label class="form-label">Área de muestra</label>
+          <select class="form-select" formControlName="areamuestra_Id" required>
+              <option *ngFor="let areaMuestra of listaAreaMuestra" [value]="areaMuestra.id">
+              {{ areaMuestra.nombre }}
+              </option>
+          </select>
+          </div>
+      </div>
+  
+      <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12">
+              <div class="d-grid gap-2">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Listado de usuarios</mat-label>
+                  <input type="text" placeholder="Seleccione un usuario" aria-label="Number" matInput
+                    formControlName="usuario" [matAutocomplete]="auto" class="form-control is-invalid">
+                  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let usuario of listaUsuarios" [value]="usuario">
+                      {{ usuario.nombreCompleto }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+    
+                <div class="invalid-feedback" *ngIf="campoNoEsValido('usuario')">
+                  Debe selecionar un usuario
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Calidades</label>
+            <select class="form-select" formControlName="calidad_Id" required>
+              <option *ngFor="let calidad of listaCalidad" [value]="calidad.id">
+                {{ calidad.nombre }}
+              </option>
+            </select>
+          </div>
+        </div>      
+    </form>
+  
+    <div class="row">
+      <div class="col-12">
+        <br />
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="d-grid gap-2">
+          <button (click)="buscarByFiltros()" class="btn btn-primary">
+            <mat-icon>search</mat-icon>
+            Buscar
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <br />
+      </div>
+    </div>
+    <ngx-datatable class="material container striped" [rows]="listaClasificacion" [columnMode]="'flex'" [headerHeight]="50"
+      [footerHeight]="50" rowHeight="auto">
+      <ngx-datatable-column name="Id" [flexGrow]="0.5">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <button mat-stroked-button color="warn" (click)="verDetalle(value)">
+            Detalles
+          </button>
+          <button mat-raised-button color="primary" (click)="EditarRegistro(value)">
+            Editar
+          </button>
+        </ng-template> 
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Área de muestra" prop="areaMuestra_Nombre">
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Calidad" prop="calidad_Nombre">
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Cantidad" prop="cantidad">
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Fecha de registro de siembra" prop="fechaRegistro">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{ value | date:'medium'}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Nombre de usuario" prop="usuario">
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Variedad" prop="variedad_Nombre">
+      </ngx-datatable-column>
+      <ngx-datatable-column [flexGrow]="0.5" name="Observaciones" prop="observaciones">
+      </ngx-datatable-column>      
+    </ngx-datatable> 
+  </ng-template>
