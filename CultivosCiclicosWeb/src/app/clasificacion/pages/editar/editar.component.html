@@ -1,0 +1,101 @@
+<mat-grid-list cols="1" *ngIf="!listaAreaMuestra; else divlistaSiembra">
+    <mat-grid-tile>
+      <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+<ng-template #divlistaSiembra>
+<h1>Editar clasificación de siembra</h1>
+<mat-divider></mat-divider>
+<br />
+    
+    <form autocomplete="off" [formGroup]="miFormulario">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-grid gap-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Área de siembra</mat-label>
+                        <mat-select (selectionChange)="mostrarAreaMuestra($event)" formControlName="areasiembra_Id"
+                        name="AreaSiembra" required>
+                            <mat-option *ngFor="let areaSiembra of listaAreaSiembra" [value]="areaSiembra.id">
+                                {{ areaSiembra.nombre }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">     
+                <label class="form-label">Área de muestra</label>
+                <select class="form-select" formControlName="areamuestra_Id" required>
+                    <option *ngFor="let areaMuestra of listaAreaMuestra" [value]="areaMuestra.id">
+                        {{ areaMuestra.nombre }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="col-md-12">
+                <div class="d-grid gap-2">
+                    <label class="form-label">Cantidad</label>
+                    <input  type="text"
+                            formControlName="cantidad"
+                            placeholder="Cantidad de registros de siembra"
+                            class="form-control is-invalid">
+                    
+                    <div class="invalid-feedback" *ngIf="campoNoEsValido('cantidad')">
+                        Debe ser mínimo de 3 caracteres
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Variedades</label>
+                <select class="form-select" formControlName="variedad_Id" required>
+                    <option *ngFor="let variedad of listaVariedad" [value]="variedad.id">
+                        {{ variedad.nombre }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Calidad</label>
+                <select class="form-select" formControlName="calidad_Id" required>
+                    <option *ngFor="let calidad of listaCalidad" [value]="calidad.id">
+                        {{ calidad.nombre }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Observaciones</label>
+                <textarea formControlName="observaciones" placeholder="observaciones del registro siembra"
+                class="form-control is-invalid">
+                </textarea>
+
+                <div class="invalid-feedback" *ngIf="campoNoEsValido('observaciones')">
+                Debe ser mínimo de 3 letras
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2">
+                <button (click)="editar()" class="btn btn-primary">
+                    <mat-icon>edit</mat-icon>
+                    Editar
+                </button>
+                </div>
+            </div>
+        </div>    
+    </form>
+</ng-template>

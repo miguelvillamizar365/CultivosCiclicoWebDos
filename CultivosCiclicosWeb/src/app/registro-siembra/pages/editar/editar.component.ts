@@ -72,13 +72,13 @@ export class EditarComponent implements OnInit
         )
       .subscribe(siembra => {
         this.siembra = siembra;
-        
+                
         this.listaAreaMuestra = [];
         this.listaAreaMuestra = this.listaAreaMuestraGlobal.filter(n=> n.areaSiembraId == siembra.areaSiembraId);
 
         this.miFormulario.reset({
           areasiembra_Id:         siembra.areaSiembraId,
-          areamuestra_Id:         this.listaAreaMuestra[0].id,
+          areamuestra_Id:         siembra.areaMuestraId,
           variedad_Id:            siembra.variedadId,
           actividadId:            siembra.actividadId,
           FechaRegistroSiembra:   siembra.fechaRegistroSiembra,

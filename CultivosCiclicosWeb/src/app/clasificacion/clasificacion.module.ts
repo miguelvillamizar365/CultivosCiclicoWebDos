@@ -6,12 +6,14 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { ClasificacionRoutingModule } from './clasificacion-routing.module';
 import { EditarComponent } from './pages/editar/editar.component';
+import { ClasificacionComponent } from './pages/clasificacion/clasificacion.component';
 
 
 @NgModule({
   declarations: [
     ListadoComponent,
-    EditarComponent
+    EditarComponent,
+    ClasificacionComponent
   ],
   imports: [
     CommonModule,

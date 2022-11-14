@@ -1,0 +1,63 @@
+<mat-grid-list cols="1" *ngIf="!clasificacion; else divClasificacion">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divClasificacion>
+    <h1>Editar de registros de siembra</h1>
+    <mat-divider></mat-divider>
+    <br />
+
+    <form autocomplete="off">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-grid gap-2">
+                    <mat-label>Área de siembra</mat-label>
+                    <input type="text" class="form-control"
+                    [value]="clasificacion.areaSiembraNombre" readonly disabled>
+                </div>
+            </div>
+            <div class="col-md-6">     
+                <label class="form-label">Área de muestra</label>                
+                <input type="text" class="form-control"
+                [value]="clasificacion.areaMuestraNombre" readonly disabled>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                <div class="d-grid gap-2">
+                    <label class="form-label">Cantidad</label>                    
+                    <input type="text" class="form-control"
+                    [value]="clasificacion.cantidad" readonly disabled>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Variedades</label>
+                <input type="text" class="form-control"
+                [value]="clasificacion.variedadNombre" readonly disabled>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Observaciones</label>
+                <textarea [value]="clasificacion.observaciones" class="form-control is-invalid" readonly disabled>
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2">
+                    <button mat-stroked-button 
+                    color="primary"
+                    (click)="regresar()">Regresar
+                    </button>
+                </div>
+            </div>
+          </div>
+    </form>
+</ng-template>

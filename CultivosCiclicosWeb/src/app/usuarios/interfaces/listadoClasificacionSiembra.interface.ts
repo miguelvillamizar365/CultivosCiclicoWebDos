@@ -1,13 +1,17 @@
 export interface ListaClasificacion {
     id:                 number;
-    areaMuestra_Id:     number;
-    areaMuestra_Nombre: string;
-    calidad_Id:         string;
-    calidad_Nombre:     string;
+    areaMuestraId:     number;
+    areaMuestraNombre: string;
+    calidadId:         string;
+    calidadNombre:     string;
     cantidad:           Date;
     usuario:            string;
     fechaRegistro:      Date;
-    variedad_Id:        number;
-    variedad_Nombre:    string;
+    variedadId:        number;
+    variedadNombre:    string;
     observaciones:      string;
+    estadoId:          number;
+    estadoNombre:      string;
+    areaSiembraId:     number; 
+    areaSiembraNombre: string;
 }

@@ -15,16 +15,16 @@ export class ClasificacionService {
   private baseUrl: string = environment.baseUrl;
   private headers;
   private urlGetClasificaciones: string = `${this.baseUrl}api/ClasificacionSiembra/ObtenerTodosFiltrosAsync`;
-  private urlGetActividadPorId: string = `${this.baseUrl}api/ClasificacionSiembra/${0}`;
-  private urlActualizarActividad : string = `${this.baseUrl}api/ClasificacionSiembra/Actualizar?id=${0}`;
+  private urlGetClasificacionPorId: string = `${this.baseUrl}api/ClasificacionSiembra/ObtenerTodosFiltrosByIdAsync?id=${0}`;
+  private urlActualizarClasificacion : string = `${this.baseUrl}api/ClasificacionSiembra/Actualizar?id=${0}`;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders()
     .set('Authorization', localStorage.getItem('token') || '');
   }
 
-  getActividadPorId(id: number):Observable<Actividades> {
-    return this.http.get<Actividades>( this.urlGetActividadPorId + id, { headers: this.headers});
+  getClasificacionPorId(id: number):Observable<ListaClasificacion> {
+    return this.http.get<ListaClasificacion>( this.urlGetClasificacionPorId + id, { headers: this.headers});
   }
 
   getClasificaciones(usuario: number, calidad : number, areamuestra_id: number): Observable<ListaClasificacion[]>
@@ -37,8 +37,7 @@ export class ClasificacionService {
     return this.http.get<ListaClasificacion[]>(this.urlGetClasificaciones, { headers: this.headers, params: queryParams });
   }
 
-  actualizarActividad(Actividad: Actividades): Observable<Actividades>{
-    return this.http.post<Actividades>(this.urlActualizarActividad + Actividad.id, Actividad, { headers: this.headers});
+  actualizarClasificacion(Clasificacion: ListaClasificacion): Observable<ListaClasificacion>{
+    return this.http.post<ListaClasificacion>(this.urlActualizarClasificacion + Clasificacion.id, Clasificacion, { headers: this.headers});
   }
-
 }
