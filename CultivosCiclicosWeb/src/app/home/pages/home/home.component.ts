@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit
   ActividadesEnabled = false;
   RegistroSiembraEnabled = false;
   ClasificacionEnabled = false;
+  RegistroSeguimientoFenologicoEnabled = false;
 
   constructor(private router: Router,
     private authService: AuthService) { }
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit
       this.UsuariosEnabled = true;
       this.ActividadesEnabled = true;
       this.RegistroSiembraEnabled = true;
+      this.RegistroSeguimientoFenologicoEnabled = true;
       this.ClasificacionEnabled = true;
     }
     //Asesor de cultivo (Web)    
@@ -38,6 +40,7 @@ export class HomeComponent implements OnInit
       this.UsuariosEnabled = false;
       this.ActividadesEnabled = true;
       this.RegistroSiembraEnabled = true;
+      this.RegistroSeguimientoFenologicoEnabled = true;
       this.ClasificacionEnabled = true;
     }
     //Asesor comercial (Web)
@@ -45,6 +48,7 @@ export class HomeComponent implements OnInit
       this.UsuariosEnabled = false;
       this.ActividadesEnabled = false;
       this.RegistroSiembraEnabled = false;
+      this.RegistroSeguimientoFenologicoEnabled = false;
       this.ClasificacionEnabled = false;
     }
   }

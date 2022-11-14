@@ -1,0 +1,73 @@
+<mat-grid-list cols="1" *ngIf="!seguimientofenologico; else divSiembra">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divSiembra>
+    
+<form autocomplete="off">
+    <div class="row">
+        <div col="100">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-label>Área de siembra</mat-label>
+              <input type="text" class="form-control"
+              [value]="seguimientofenologico.areaSiembraNombre" readonly disabled>
+            </div>
+            
+            <div class="col-md-6">              
+              <mat-label>Área de muestra</mat-label>
+              <input type="text" class="form-control"
+              [value]="seguimientofenologico.areaMuestraNombre" readonly disabled>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-6">
+                <mat-label>Variedad</mat-label>
+                <input type="text" class="form-control" 
+                [value]="seguimientofenologico.variedadNombre" readonly disabled>
+            </div>
+    
+            <div class="col-md-6">              
+              <mat-label>Estado</mat-label>
+              <input type="text" class="form-control" 
+              [value]="seguimientofenologico.estadoNombre" readonly disabled>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <mat-label>Cantidad</mat-label>                
+                <input type="text" class="form-control"
+                [value]="seguimientofenologico.cantidad" readonly disabled>
+            </div>
+          
+            <div class="col-md-6">
+                <mat-label>Actividad</mat-label>
+                <input type="text" class="form-control"
+                 [value]="seguimientofenologico.actividad_Nombre" readonly disabled>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-12">
+                <mat-label>Observaciones</mat-label>
+                <textarea class="form-control" [value]="seguimientofenologico.observaciones" readonly disabled>
+                </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <div class="d-grid gap-2">
+                    <button mat-stroked-button 
+                    color="primary"
+                    (click)="regresar()">Regresar
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </form>
+</ng-template>

@@ -72,6 +72,21 @@
                     </a>
                 </mat-expansion-panel>
             </mat-accordion>
+            <mat-accordion *ngIf="RegistroSeguimientoFenologicoEnabled">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Registro Seguimiento Fenológico
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="../Seguimiento-fenologico/listado"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Listado de Registro Seguimiento Fenológico</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
             <mat-accordion *ngIf="ClasificacionEnabled">
                 <mat-expansion-panel>
                     <mat-expansion-panel-header>

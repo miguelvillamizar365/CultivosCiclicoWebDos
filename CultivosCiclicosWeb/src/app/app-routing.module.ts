@@ -33,6 +33,12 @@ const routes :Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path:'Seguimiento-fenologico',
+    loadChildren: () => import('./seguimiento-fenologico/seguimiento-fenologico.module').then(m=> m.SeguimientoFenologicoModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path:'clasificacion',
     loadChildren: () => import('./clasificacion/clasificacion.module').then(m=> m.ClasificaiconModule),
     canLoad: [ AuthGuard ],
