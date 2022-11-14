@@ -100,13 +100,13 @@
           </button>
         </ng-template> 
       </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Área de muestra" prop="areaMuestraNombre">
+      <ngx-datatable-column [flexGrow]="0.5" name="Área de muestra" prop="areaMuestra_Nombre">
       </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Variedad" prop="variedadNombre">
+      <ngx-datatable-column [flexGrow]="0.5" name="Variedad" prop="variedad_Nombre">
       </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Estado" prop="estadoNombre">
+      <ngx-datatable-column [flexGrow]="0.5" name="Estado" prop="estado_Nombre">
       </ngx-datatable-column>
-      <ngx-datatable-column [flexGrow]="0.5" name="Fecha de registro de siembra" prop="fechaRegistroSiembra">
+      <ngx-datatable-column [flexGrow]="0.5" name="Fecha de registro de siembra" prop="fechaRegistro">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           {{ value | date:'medium'}}
         </ng-template>

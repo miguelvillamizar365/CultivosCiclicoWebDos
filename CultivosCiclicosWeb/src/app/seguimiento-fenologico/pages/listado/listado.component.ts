@@ -9,14 +9,14 @@ import { AreaSiembra } from 'src/app/usuarios/interfaces/areasiembra.interface';
 import { Usuario } from 'src/app/usuarios/interfaces/usuarios.interface';
 import { Variedad } from 'src/app/usuarios/interfaces/variedad.interface';
 import { SeguimientofenologicoService } from 'src/app/services/seguimientofenologico.service';
-import { Seguimientofenologico } from '../../../usuarios/interfaces/seguimientofenologico.interface';
+import { Seguimientofenologico,SeguimientofenologicoResult } from '../../../usuarios/interfaces/seguimientofenologico.interface';
 @Component({
   selector: 'app-listado',  
   templateUrl: './listado.component.html',
   styleUrls: []
 })
 export class ListadoComponent implements OnInit {
-  public listaSiembra:       Seguimientofenologico[] = [];
+  public listaSiembra:       SeguimientofenologicoResult[] = [];
   public listaAreaSiembra:   AreaSiembra[] = [];  
   public listaAreaMuestraGlobal:  AreaMuestra[] = [];
   public listaAreaMuestra:   AreaMuestra[] = [];
