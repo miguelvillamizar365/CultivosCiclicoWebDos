@@ -6,3 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .spacer{
     flex: 1 1 auto;
 }
+
+.mat-toolbar.mat-primary {
+    background: #4b6b4c;
+    color: #fff;
+}
