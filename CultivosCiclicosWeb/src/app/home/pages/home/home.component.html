@@ -102,6 +102,27 @@
                     </a>
                 </mat-expansion-panel>
             </mat-accordion>
+            <mat-accordion *ngIf="ClasificacionEnabled">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Gráficas
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a routerLink="../graficas/reporte-area-muestra-calidad"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Reporte área de muestra calidad</span>
+                    </a>
+                    <a routerLink="../graficas/reporte-calidades-por-variedad"
+                        mat-list-item
+                        (click)="sidenav.toggle()"> 
+                        <mat-icon mat-list-icon >label</mat-icon>
+                        <span>Reporte calidades por variedad</span>
+                    </a>
+                </mat-expansion-panel>
+            </mat-accordion>
         </mat-nav-list>
     </mat-sidenav>    
     <mat-toolbar>

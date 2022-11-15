@@ -23,7 +23,9 @@
     "@swimlane/ngx-datatable": "^20.1.0",
     "angular-material-expansion-panel": "^0.7.2",
     "bootstrap": "^5.2.2",
+    "chart.js": "^4.0.1",
     "moment": "^2.29.4",
+    "ng2-charts": "^3.1.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

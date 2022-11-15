@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth/auth.service';
 
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit
   ActividadesEnabled = false;
   RegistroSiembraEnabled = false;
   ClasificacionEnabled = false;
+  GrafiasEnabled = false;
   RegistroSeguimientoFenologicoEnabled = false;
 
   constructor(private router: Router,
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit
       this.RegistroSiembraEnabled = true;
       this.RegistroSeguimientoFenologicoEnabled = true;
       this.ClasificacionEnabled = true;
+      this.GrafiasEnabled = true;
     }
     //Asesor de cultivo (Web)    
     else if(rol_id == "2"){      
@@ -42,6 +45,7 @@ export class HomeComponent implements OnInit
       this.RegistroSiembraEnabled = true;
       this.RegistroSeguimientoFenologicoEnabled = true;
       this.ClasificacionEnabled = true;
+      this.GrafiasEnabled = true;
     }
     //Asesor comercial (Web)
     else if(rol_id == "5"){      
@@ -49,7 +53,8 @@ export class HomeComponent implements OnInit
       this.ActividadesEnabled = false;
       this.RegistroSiembraEnabled = false;
       this.RegistroSeguimientoFenologicoEnabled = false;
-      this.ClasificacionEnabled = false;
+      this.ClasificacionEnabled = false;      
+      this.GrafiasEnabled = false;
     }
   }
 

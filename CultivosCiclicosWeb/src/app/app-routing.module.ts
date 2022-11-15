@@ -45,6 +45,12 @@ const routes :Routes = [
     canActivate: [ AuthGuard ]
   },
   {
+    path:'graficas',
+    loadChildren: () => import('./graficas/graficas.module').then(m=> m.GraficasModule),
+    canLoad: [ AuthGuard ],
+    canActivate: [ AuthGuard ]
+  },
+  {
     path: '404',
     component:ErrorPageComponent
   },
