@@ -16,6 +16,6 @@ export class Utilidades{
               .toString()
               .padStart(2, '0');
       
-        return `${date}/${month}/${year}`;
+        return `${month}/${date}/${year}`;
       }
 }

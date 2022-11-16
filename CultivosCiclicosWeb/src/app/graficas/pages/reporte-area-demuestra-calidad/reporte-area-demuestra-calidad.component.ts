@@ -6,7 +6,7 @@ import { graficaService } from 'src/app/services/graficas.service';
   selector: 'app-reporte-area-demuestra-calidad',
   templateUrl: './reporte-area-demuestra-calidad.component.html',
   styles: [
-  ]
+  ] 
 })
 export class ReporteAreaDemuestraCalidadComponent implements OnInit {
   
