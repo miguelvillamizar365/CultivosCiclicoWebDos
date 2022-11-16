@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { graficaService } from 'src/app/services/graficas.service';
-import { Reporteareademuestracalidad } from 'src/app/usuarios/interfaces/reporteareademuestracalidad.interface';
 
 @Component({
   selector: 'app-reporte-area-demuestra-calidad',
@@ -39,8 +38,6 @@ export class ReporteAreaDemuestraCalidadComponent implements OnInit {
     
     this.graficaService.getReporteareademuestracalidad()
     .subscribe(result => {
-      
-      
     this.barChartData = result;
   });
   }

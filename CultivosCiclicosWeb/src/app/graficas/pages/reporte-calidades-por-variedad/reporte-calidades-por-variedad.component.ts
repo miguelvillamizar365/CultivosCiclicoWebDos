@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { graficaService } from 'src/app/services/graficas.service';
 
 @Component({
   selector: 'app-reporte-calidades-por-variedad',
@@ -9,20 +10,35 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
 })
 export class ReporteCalidadesPorVariedadComponent implements OnInit {
 
-  constructor() { }
+  constructor(private graficaService: graficaService) { }
+
+  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartLabels: string[] = [' Select', ' Fancy', ' Standard'];
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [
+      { data: [ 350, 450, 100 ] }
+    ]
+  };
 
   ngOnInit(): void {
+    
+    this.graficaService.getReporteCalidadesPorVariedad()
+    .subscribe(result => {
+      var lstData: number[] = [];
+      var lstlabel: string[] = result.label.split(",");
+      var lstString: string[] = result.datasets.split(",");
+      lstString.forEach(element => {
+        lstData.push(Number.parseInt(element));
+      });
+      lstlabel.forEach(element => {
+        this.doughnutChartData.labels?.push(element);
+      });
+       
+       this.doughnutChartData.datasets.push({data:lstData});
+  });
   }
- // Doughnut
- public doughnutChartLabels: string[] = [ 'Fancy', 'Select', 'Standard' ];
- public doughnutChartData: ChartData<'doughnut'> = {
-   labels: this.doughnutChartLabels,
-   datasets: [
-     { data: [ 19743  ,9210, 14443 ] }
-   ]
- };
  
- public doughnutChartType: ChartType = 'doughnut';
 
  // events
  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
