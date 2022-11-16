@@ -116,7 +116,7 @@ export class AgregarComponent implements OnInit {
     {
       this.mostrarSnackBar('Por favor seleccione el tipo de actividad');
     }
-    if(this.miFormulario.value.fechaActividad <= new Date())
+    if(this.miFormulario.value.fechaActividad < new Date())
     {
       this.mostrarSnackBar('La fecha seleccionada no puede ser menor o igual a la actual');
     }
